@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public partial class MSTSP // : IStoredProceduresI<SqlConnection, SqlCommand>
 {
 static Type type = typeof(MSTSP);
@@ -146,17 +148,17 @@ static Type type = typeof(MSTSP);
     /// </summary>
     public DataTable SelectAllRowsOfColumns(SqlTransaction tran, string p, params string[] selectSloupce)
     {
-        return SelectDataTable(tran, string.Format("SELECT {0} FROM {1}", SH.Join(AllChars.comma, selectSloupce), p));
+        return SelectDataTable(tran, string.Format("SELECT {0} FROM {1}", string.Join(AllChars.comma, selectSloupce), p));
     }
     public DataTable SelectAllRowsOfColumns(SqlTransaction tran, string p, List<string> ziskaneSloupce, string idColumnName, int idColumnValue)
     {
-        string nazvy = SH.Join(AllChars.comma, ziskaneSloupce.ToArray());
+        string nazvy = string.Join(AllChars.comma, ziskaneSloupce.ToArray());
         SqlCommand comm = new SqlCommand(string.Format("SELECT {0} FROM {1} ", nazvy, p) + GeneratorMsSql.SimpleWhere(idColumnName));
         AddCommandParameter(comm, 0, idColumnValue);
         return SelectDataTable(tran, comm);
     }
     /// <summary>
-    /// Vrátí mi všechny položky ze sloupce 
+    /// Vrátí mi všechny položky ze sloupce
     /// </summary>
     public DataTable SelectGreaterThan(SqlTransaction tran, string tableName, string tableColumn, object hodnotaOd)
     {
@@ -426,11 +428,11 @@ static Type type = typeof(MSTSP);
     {
         string aktual = SelectCellDataTableStringOneRow(tran, tableName, sloupecID, hodnotaID, sloupecAppend).ToString();
         aktual = aktual.Trim();
-        List<string> d = new List<string>(SH.Split(aktual, AllStrings.comma));
+        List<string> d = new List<string>(SHSplit.Split(aktual, AllStrings.comma));
         if (!d.Contains(hodnotaAppend))
         {
             aktual += hodnotaAppend + AllStrings.comma;
-            string save = SH.Join(AllChars.comma, d.ToArray());
+            string save = string.Join(AllChars.comma, d.ToArray());
             return Update(tran, tableName, sloupecAppend, aktual, sloupecID, hodnotaID);
         }
         return 0;
@@ -439,9 +441,9 @@ static Type type = typeof(MSTSP);
     {
         string aktual = SelectCellDataTableStringOneRow(tran, tableName, sloupecID, hodnotaID, sloupecCut).ToString();
         aktual = aktual.Trim();
-        List<string> d = new List<string>(SH.Split(aktual, AllStrings.comma));
+        List<string> d = new List<string>(SHSplit.Split(aktual, AllStrings.comma));
         d.Remove(hodnotaCut);
-        string save = SH.Join(AllChars.comma, d.ToArray());
+        string save = string.Join(AllChars.comma, d.ToArray());
         return Update(tran, tableName, sloupecCut, save, sloupecID, hodnotaID);
     }
     /// <summary>
@@ -537,7 +539,7 @@ static Type type = typeof(MSTSP);
     }
     /// <summary>
     /// Do této metody se vkládají hodnoty bez ID
-    /// ID se počítá jako v Sqlite - tedy od 1 
+    /// ID se počítá jako v Sqlite - tedy od 1
     /// A2 je zde proto aby se mohlo určit poslední index a ten inkrementovat a na ten vložit. Název/hodnota/whatever tohoto sloupce musí být 1. v A3.
     /// Používej tehdy když ID sloupec má nějaký speciální název, např. IDUsers
     /// </summary>
@@ -629,7 +631,7 @@ static Type type = typeof(MSTSP);
     string cs = null;
     /// <summary>
     /// Tuto metodu nepoužívej například po vkládání, když chceš zjistit ID posledního řádku, protože když tam bude něco smazaného , tak to budeš mít o to posunuté !!
-    /// 
+    ///
     /// </summary>
     public int SelectFindOutNumberOfRows(SqlTransaction tran, string tabulka)
     {

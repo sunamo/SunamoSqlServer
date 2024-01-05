@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.Data;
+
 public class ComboABC
 {
     public ABC where;

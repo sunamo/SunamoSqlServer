@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public class GeneratorMsSqlWorker
 {
     /// <summary>

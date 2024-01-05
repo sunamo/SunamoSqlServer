@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 /// <summary>
 /// Třída musí být public, protože jinak se mi ji nepodaří zkompilovat
 /// </summary>

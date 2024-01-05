@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public abstract class MSTableRowIDNameT<T> where T : struct //: MSBaseRowTable//, ITableRow<int>
 {
     MSColumnsDB _columns = null;

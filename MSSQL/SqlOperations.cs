@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public partial class SqlOperations : SqlServerHelper
 {
     public string AverageLenghtOfColumnData(string table, string column)

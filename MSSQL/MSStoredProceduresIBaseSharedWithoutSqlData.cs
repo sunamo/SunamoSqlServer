@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 //using System;
 //using System.Collections.Generic;
 //using System.Linq;
@@ -1895,11 +1897,11 @@
 //    public int UpdateAppendStringValueCheckExistsOneRow(string tableName, string sloupecAppend, string hodnotaAppend, string sloupecID, object hodnotaID)
 //    {
 //        string aktual = SelectCellDataTableStringOneRow(tableName, sloupecAppend, sloupecID, hodnotaID);
-//        List<string> d = new List<string>(SH.Split(aktual, ","));
+//        List<string> d = new List<string>(SHSplit.Split(aktual, ","));
 //        if (!d.Contains(hodnotaAppend))
 //        {
 //            aktual += hodnotaAppend + ",";
-//            string save = SH.Join(',', d.ToArray());
+//            string save = string.Join(',', d.ToArray());
 //            return UpdateOneRow(tableName, sloupecAppend, aktual, sloupecID, hodnotaID);
 //        }
 //        return 0;
@@ -1935,9 +1937,9 @@
 //    public int UpdateCutStringValue(string tableName, string sloupecCut, string hodnotaCut, string sloupecID, object hodnotaID)
 //    {
 //        string aktual = SelectCellDataTableStringOneRow(tableName, sloupecCut, sloupecID, hodnotaID);
-//        List<string> d = new List<string>(SH.Split(aktual, ","));
+//        List<string> d = new List<string>(SHSplit.Split(aktual, ","));
 //        d.Remove(hodnotaCut);
-//        string save = SH.JoinWithoutTrim(",", d);
+//        string save = string.Join(WithoutTrim(",", d);
 //        return UpdateOneRow(tableName, sloupecCut, save, sloupecID, hodnotaID);
 //    }
 //    /// <summary>

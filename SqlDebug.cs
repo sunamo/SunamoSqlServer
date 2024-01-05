@@ -1,3 +1,5 @@
+namespace SunamoSqlServer;
+
 public class SqlDebug
 {
     /// <returns></returns>

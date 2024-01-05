@@ -1,8 +1,10 @@
+namespace SunamoSqlServer.MSSQL;
+
 /// <summary>
 /// 12-1-2019 refactoring:
 /// 1)all methods here take ABC if take more than Where. otherwise is allowed params AB[] / object[]
 /// 2) always is table - select / update column - where
-/// 
+///
 /// </summary>
 public partial class MSStoredProceduresIBase : SqlServerHelper
 {
@@ -437,7 +439,7 @@ public partial class MSStoredProceduresIBase : SqlServerHelper
     /// <summary>
     /// Conn nastaví automaticky
     /// Vrátí zda byl vymazán alespoň jeden řádek
-    /// 
+    ///
     /// </summary>
     /// <param name="TableName"></param>
     /// <param name="where"></param>
@@ -806,11 +808,11 @@ public partial class MSStoredProceduresIBase : SqlServerHelper
 
     /// <summary>
     /// For getting ID use SelectLastIDFromTableSigned (without 2 postfix)
-    /// Used in TableRow* 
+    /// Used in TableRow*
     /// Do této metody se vkládají hodnoty bez ID
     /// Vrátí mi nejmenší volné číslo tabulky A1
     /// Pokud bude obsazene 1,3, vrátí až 4
-    /// ID se počítá jako v Sqlite - tedy od 1 
+    /// ID se počítá jako v Sqlite - tedy od 1
     /// A2 je zde proto aby se mohlo určit poslední index a ten inkrementovat a na ten vložit. Název/hodnota/whatever tohoto sloupce musí být 1. v A3.
     /// Používej tehdy když ID sloupec má nějaký speciální název, např. IDUsers
     /// </summary>
@@ -828,7 +830,7 @@ public partial class MSStoredProceduresIBase : SqlServerHelper
 
 
     /// <summary>
-    /// In scz use nowhere 
+    /// In scz use nowhere
     /// A2 může být ID nebo cokoliv začínající na ID(ID*)
     /// A2 je ID řádku na který se bude vkládat. Název/hodnota/whatever A2 už nesmí být v A3
     /// Používej tehdy když chceš určit index na který vkládat.
@@ -946,7 +948,7 @@ SELECT CAST(scope_identity() AS int);", table, hodnoty, nazvySloupcu.Replace("("
 
     /// <summary>
     /// Do této metody se vkládají hodnoty bez ID
-    /// ID se počítá jako v Sqlite - tedy od 1 
+    /// ID se počítá jako v Sqlite - tedy od 1
     /// A2 je zde proto aby se mohlo určit poslední index a ten inkrementovat a na ten vložit. Název/hodnota/whatever tohoto sloupce musí být 1. v A3.
     /// Používej tehdy když ID sloupec má nějaký speciální název, např. IDUsers
     /// </summary>
@@ -1584,7 +1586,7 @@ SELECT CAST(scope_identity() AS int);", table, hodnoty, nazvySloupcu.Replace("("
     }
 
     /// <summary>
-    /// Vrátí mi všechny položky ze sloupce 
+    /// Vrátí mi všechny položky ze sloupce
     /// </summary>
     public DataTable SelectGreaterThan(string tableName, string tableColumn, object hodnotaOd)
     {
@@ -2024,7 +2026,7 @@ SELECT CAST(scope_identity() AS int);", table, hodnoty, nazvySloupcu.Replace("("
 
     /// <summary>
     /// Tuto metodu nepoužívej například po vkládání, když chceš zjistit ID posledního řádku, protože když tam bude něco smazaného , tak to budeš mít o to posunuté !!
-    /// 
+    ///
     /// </summary>
     public int SelectFindOutNumberOfRows(string tabulka)
     {
@@ -2051,7 +2053,7 @@ SELECT CAST(scope_identity() AS int);", table, hodnoty, nazvySloupcu.Replace("("
     }
 
     /// <summary>
-    /// Vrátí SE, když nebude nalezena 
+    /// Vrátí SE, když nebude nalezena
     /// </summary>
     public string SelectNameOfID(string tabulka, long id)
     {
@@ -2909,11 +2911,11 @@ SELECT CAST(scope_identity() AS int);", table, hodnoty, nazvySloupcu.Replace("("
     {
         string aktual = SelectCellDataTableStringOneRow(tableName, sloupecAppend, sloupecID, hodnotaID);
 
-        List<string> d = new List<string>(SH.Split(aktual, ","));
+        List<string> d = new List<string>(SHSplit.Split(aktual, ","));
         if (!d.Contains(hodnotaAppend))
         {
             aktual += hodnotaAppend + ",";
-            string save = SH.Join(',', d.ToArray());
+            string save = string.Join(',', d.ToArray());
 
             return UpdateOneRow(tableName, sloupecAppend, aktual, sloupecID, hodnotaID);
         }
@@ -2924,9 +2926,9 @@ SELECT CAST(scope_identity() AS int);", table, hodnoty, nazvySloupcu.Replace("("
     {
         string aktual = SelectCellDataTableStringOneRow(tableName, sloupecCut, sloupecID, hodnotaID);
 
-        List<string> d = new List<string>(SH.Split(aktual, ","));
+        List<string> d = new List<string>(SHSplit.Split(aktual, ","));
         d.Remove(hodnotaCut);
-        string save = SH.JoinWithoutTrim(",", d);
+        string save = string.Join(WithoutTrim(",", d);
         return UpdateOneRow(tableName, sloupecCut, save, sloupecID, hodnotaID);
     }
 

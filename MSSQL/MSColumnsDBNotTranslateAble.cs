@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public partial class MSColumnsDB : List<MSSloupecDB>
 {
 
@@ -9,7 +11,7 @@ public partial class MSColumnsDB : List<MSSloupecDB>
         string innerInsertToTable = "";
         if (!signed2)
         {
-            innerInsertToTable = CSharpGenerator.AddTab(2, sloupecID + " = (" + typSloupecIDS + ")MSStoredProceduresI.ci.Insert(TableName, typeof(" + typSloupecIDS + "),\"" + sloupecID + "\"," + SH.Join(',', seznamNameValueBezPrvniho) + @");
+            innerInsertToTable = CSharpGenerator.AddTab(2, sloupecID + " = (" + typSloupecIDS + ")MSStoredProceduresI.ci.Insert(TableName, typeof(" + typSloupecIDS + "),\"" + sloupecID + "\"," + string.Join(',', seznamNameValueBezPrvniho) + @");
             return " + sloupecID + ";");
         }
         else
@@ -83,7 +85,7 @@ public partial class MSColumnsDB : List<MSSloupecDB>
                 temp.Add(name);
             }
         }
-        string seznamNameValue = SH.Join(',', temp.ToArray());
+        string seznamNameValue = string.Join(',', temp.ToArray());
         bool isOtherColumnID = IsOtherColumnID;
         CSharpGenerator csg = new CSharpGenerator();
         csg.Using(usings);
@@ -98,13 +100,13 @@ ParseRow(o);");
         {
             if (isOtherColumnID)
             {
-                string innerInsertToTable = CSharpGenerator.AddTab(2, sloupecID + " = MSTSP.ci.InsertToRow2(trans,TableName,\"" + sloupecID + "\"," + SH.Join(',', nameFields.ToArray()) + @");
+                string innerInsertToTable = CSharpGenerator.AddTab(2, sloupecID + " = MSTSP.ci.InsertToRow2(trans,TableName,\"" + sloupecID + "\"," + string.Join(',', nameFields.ToArray()) + @");
             return " + sloupecID + ";");
                 csg.Method(1, "public " + sloupecIDTyp + " InsertToTable(SqlTransaction trans)", innerInsertToTable);
             }
             else
             {
-                string innerInsertToTable = CSharpGenerator.AddTab(2, sloupecID + @" = MSTSP.ci.InsertToRow(trans,TableName," + SH.Join(',', nameFields.ToArray()) + @");
+                string innerInsertToTable = CSharpGenerator.AddTab(2, sloupecID + @" = MSTSP.ci.InsertToRow(trans,TableName," + string.Join(',', nameFields.ToArray()) + @");
             return " + sloupecID + ";");
                 csg.Method(1, "public " + sloupecIDTyp + " InsertToTable(SqlTransaction trans)", innerInsertToTable);
             }
@@ -113,18 +115,18 @@ ParseRow(o);");
         {
             if (isOtherColumnID)
             {
-                string innerInsertToTable = CSharpGenerator.AddTab(2, sloupecID + " = (" + sloupecIDTyp + ")MSTSP.ci.InsertToRow2(trans,TableName,\"" + sloupecID + "\"," + SH.Join(',', nameFields.ToArray()) + @");
+                string innerInsertToTable = CSharpGenerator.AddTab(2, sloupecID + " = (" + sloupecIDTyp + ")MSTSP.ci.InsertToRow2(trans,TableName,\"" + sloupecID + "\"," + string.Join(',', nameFields.ToArray()) + @");
             return " + sloupecID + ";");
                 csg.Method(1, "public " + sloupecIDTyp + " InsertToTable(SqlTransaction trans)", innerInsertToTable);
             }
             else
             {
-                string innerInsertToTable = CSharpGenerator.AddTab(2, sloupecID + @" = (" + sloupecIDTyp + ")MSTSP.ci.InsertToRow(trans,TableName," + SH.Join(',', nameFields.ToArray()) + @");
+                string innerInsertToTable = CSharpGenerator.AddTab(2, sloupecID + @" = (" + sloupecIDTyp + ")MSTSP.ci.InsertToRow(trans,TableName," + string.Join(',', nameFields.ToArray()) + @");
             return " + sloupecID + ";");
                 csg.Method(1, "public " + sloupecIDTyp + " InsertToTable(SqlTransaction trans)", innerInsertToTable);
             }
         }
-        string innerInsertToTable3 = CSharpGenerator.AddTab(2, "MSTSP.ci.Insert3(trans,TableName, " + sloupecID + "," + SH.Join(',', nameFields.ToArray()) + ");");
+        string innerInsertToTable3 = CSharpGenerator.AddTab(2, "MSTSP.ci.Insert3(trans,TableName, " + sloupecID + "," + string.Join(',', nameFields.ToArray()) + ");");
         csg.Method(1, "public void InsertToTable3(SqlTransaction trans)", innerInsertToTable3);
         csg.EndBrace(0);
         return csg.ToString();

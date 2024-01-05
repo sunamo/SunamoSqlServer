@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public class GeneratorMsSqlNoParam
 {
     public static string CombinedWhere(ABC where, ABC isNotWhere, ABC greaterThanWhere, ABC lowerThanWhere, ABC whereOr = null)

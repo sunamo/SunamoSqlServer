@@ -1,4 +1,6 @@
-﻿public partial class TableRowHelper{ 
+namespace SunamoSqlServer.MSSQL;
+
+public partial class TableRowHelper{ 
 public static string BasicTest(string name, string value, int maxlenght)
     {
         if (value.Trim().Length == 0)

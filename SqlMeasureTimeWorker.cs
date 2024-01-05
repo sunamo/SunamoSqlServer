@@ -1,3 +1,5 @@
+namespace SunamoSqlServer;
+
 public class SqlMeasureTimeWorker
 {
     public static event Action NeedNewFile;

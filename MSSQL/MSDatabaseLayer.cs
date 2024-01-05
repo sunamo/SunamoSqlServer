@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public partial class MSDatabaseLayer //:MSDatabaseLayerBase
 {
     #region Not dependent on Connection
@@ -178,7 +180,7 @@ public partial class MSDatabaseLayer //:MSDatabaseLayerBase
     }
 
     /// <summary>
-    /// Jsou rozděleny do 2 dict ze 2 důvodů: 
+    /// Jsou rozděleny do 2 dict ze 2 důvodů:
     /// 1) aby se rychleji získavali popisy daných datových typů
     /// 2) aby jsem odlišil a zaznamenal typy které chci používat a které nikoliv
     /// </summary>
@@ -396,7 +398,7 @@ public partial class MSDatabaseLayer //:MSDatabaseLayerBase
         {
             return SqlDbType.VarBinary;
         }
-        var d = SH.SplitNone(trim, AllStrings.comma);
+        var d = SHSplit.SplitNone(trim, AllStrings.comma);
         if (d.Count == 2)
         {
             if (BTS.IsInt(d[0]) && BTS.IsInt(d[1]))
@@ -700,6 +702,6 @@ public partial class MSDatabaseLayer //:MSDatabaseLayerBase
     //        //ReloadConnection();
     //        LoadNewConnection(cs);
     //    }
-    //} 
+    //}
     #endregion
 }

@@ -8,26 +8,19 @@
     <DefineConstants>DEBUG2;DEBUG;TRACE;ASYNC</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="MSSQL\MSStoredProceduresIBaseSharedWithoutSqlData.cs">
-    </None>
+    <None Include="MSSQL\MSStoredProceduresIBaseSharedWithoutSqlData.cs"></None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MSSQL\Wid\">
-    </Folder>
+    <Folder Include="MSSQL\Wid\"></Folder>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
-    </PackageReference>
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0">
-    </PackageReference>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5">
-    </PackageReference>
-    <PackageReference Include="TSQL.Parser" Version="2.6.0">
-    </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0"></PackageReference>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0"></PackageReference>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5"></PackageReference>
+    <PackageReference Include="TSQL.Parser" Version="2.6.0"></PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SunamoCode\SunamoCode.csproj" />
-    <ProjectReference Include="..\sunamo\sunamo.csproj" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>

@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public class MSDatabaseLayerInstance : IDatabaseLayer<SqlDbType2>
 {
     public Dictionary<SqlDbType2, string> usedTa { get => MSDatabaseLayer.usedTa; set => MSDatabaseLayer.usedTa = value; }

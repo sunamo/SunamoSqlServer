@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.Helpers;
+
 public class StopwatchStaticSql
 {
     static Stopwatch sw = new Stopwatch();

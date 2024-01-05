@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.SqlResult;
+
 public partial class CastSqlResult{ 
 public static SqlResult<object[]> FirstRowToArrayObject(SqlResult<DataTable> dt)
     {

@@ -1,6 +1,8 @@
+namespace SunamoSqlServer;
+
 public partial class SqlServerHelper
 {
-    public static List<char> allowedInPassword = CA.ToList<char>('!', '@', '#', '$', '%', '^', '&', '*', '?', '_', '~');
+    public static List<char> allowedInPassword = CAG.ToList<char>('!', '@', '#', '$', '%', '^', '&', '*', '?', '_', '~');
     public const String diacritic = "\u00E1\u010D\u010F\u00E9\u011B\u00ED\u0148\u00F3\u0161\u0165\u00FA\u016F\u00FD\u0159\u017E\u00C1\u010C\u010E\u00C9\u011A\u00CD\u0147\u00D3\u0160\u0164\u00DA\u016E\u00DD\u0158\u017D";
     public static List<char> s_availableCharsInVarCharWithoutDiacriticLetters = null;
 
@@ -15,7 +17,7 @@ public partial class SqlServerHelper
 
 
         s_availableCharsInVarCharWithoutDiacriticLetters.AddRange(allowedInPassword);
-        CA.RemoveDuplicitiesList<char>(s_availableCharsInVarCharWithoutDiacriticLetters);
+        CAG.RemoveDuplicitiesList<char>(s_availableCharsInVarCharWithoutDiacriticLetters);
     }
 
     public static string ConvertToVarChar(string maybeUnicode, ConvertToVarcharArgs e = null)
@@ -64,7 +66,7 @@ public partial class SqlServerHelper
             }
         }
 
-        var vr = SH.ReplaceAll(sb.ToString(), AllStrings.space, AllStrings.doubleSpace);
+        var vr = SHReplace.ReplaceAll(sb.ToString(), AllStrings.space, AllStrings.doubleSpace);
         return vr;
     }
 
@@ -113,7 +115,7 @@ public partial class SqlServerHelper
 
                         if (serie != 0)
                         {
-                            /* U UPDATE Lyr_YoutubeVideos SET CodeYT=@p2  WHERE  CodeYT = @p0  AND  IDSong = @p1  je první @2. 
+                            /* U UPDATE Lyr_YoutubeVideos SET CodeYT=@p2  WHERE  CodeYT = @p0  AND  IDSong = @p1  je první @2.
                              * Tím pádem mi vrátí @2 protože je druhý v pořadí. Myslím že zde u update to mohu ignorovat
                             */
                             column = columnNames[0];
@@ -317,7 +319,7 @@ public partial class SqlServerHelper
 
     public static Tuple<int, int> UnnormalizeNumber(int serie)
     {
-        const int increaseAbout = 1000; 
+        const int increaseAbout = 1000;
 
         int l = int.MinValue;
         int h = l + increaseAbout;

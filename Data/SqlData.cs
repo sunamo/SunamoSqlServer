@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.Data;
+
     public class SqlData
     {
     public static SqlData Empty = new SqlData();

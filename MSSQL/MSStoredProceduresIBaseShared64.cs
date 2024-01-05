@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public partial class MSStoredProceduresIBase : SqlServerHelper
 {
     public bool SelectExistsTable(string p, SqlConnection conn)

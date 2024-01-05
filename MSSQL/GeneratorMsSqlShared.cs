@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public partial class GeneratorMsSql{
     /// <summary>
     /// Its object, not AB, due to automatic renaming
@@ -9,7 +11,7 @@ public partial class GeneratorMsSql{
         return CombinedWhere(new ABC(where));
     }
 
-       
+
 
     public static string CombinedWhereNotEquals(bool continuing, ref int pridavatOd, ABC whereIsNot)
     {
@@ -65,7 +67,7 @@ public partial class GeneratorMsSql{
         sb.Append(SH.Format2(" {0} = @p0 ", idColumnName));
         return sb.ToString();
     }
-    
+
     /// <summary>
     /// object hodnota se musí přidat pak k SqlCommand ručně pod @p0
     /// Vrátí pouze klazuli where
@@ -120,7 +122,7 @@ public partial class GeneratorMsSql{
         return "SELECT TOP(1) " + vracenySloupec + " FROM " + table;
     }
 
-    
+
 
 ///// <summary>
 //    /// Snaž se tuto metodu používat co nejméně, protože musí všechny parametry(kolekce) převést metodou ToArray() na pole
@@ -168,9 +170,9 @@ public static string CombinedWhere(string tabulka, bool top1, string nazvySloupc
 
 
 
-    
 
-    
+
+
 
 public static string GetValuesDirect(int i2, int to)
     {
@@ -231,11 +233,11 @@ public static string CombinedWhereOR(ABC where, ref int p)
         }
         else
         {
-            
+
         }
-        
+
         bool první = true;
-        
+
 
         foreach (AB var in where)
         {
@@ -252,7 +254,7 @@ public static string CombinedWhereOR(ABC where, ref int p)
         }
         if (pCopy != 0)
         {
-            
+
         }
         return sb.ToString();
     }
@@ -298,7 +300,7 @@ public static string CombinedWhereOR(ABC where, ref int p)
 
 public static string OutputDeleted(string sloupceJezVratit)
     {
-        var cols = SH.Split(sloupceJezVratit, AllStrings.comma);
+        var cols = SHSplit.Split(sloupceJezVratit, AllStrings.comma);
         if (cols.Count != 0)
         {
             cols = CA.Trim(cols);

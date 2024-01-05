@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.Data.Where;
+
 public class WhereABC
 {
     public ABC whereIs;

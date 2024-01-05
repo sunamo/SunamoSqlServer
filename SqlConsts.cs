@@ -1,3 +1,5 @@
+namespace SunamoSqlServer;
+
 public class SqlConsts
 {
     public const int timeout = 950;

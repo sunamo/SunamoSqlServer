@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.Converts;
+
 public class ConvertSqlDbType 
 {
     public static SqlDbType2 FromSqlDbType(SqlDbType db)

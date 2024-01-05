@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public class MSSloupec2
 {
     ///string table = "";

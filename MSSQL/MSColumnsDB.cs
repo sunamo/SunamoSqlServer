@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 //using System.Activities;
 public partial class MSColumnsDB : List<MSSloupecDB>
 {
@@ -99,7 +101,7 @@ public partial class MSColumnsDB : List<MSSloupecDB>
         }
         csg.AppendLine(3, "i++;");
         csg.EndBrace(2);
-        csg.AppendLine(2, "SunamoGridView sgv = new SunamoGridView({0});", SH.Join(',', ss.ToArray()));
+        csg.AppendLine(2, "SunamoGridView sgv = new SunamoGridView({0});", string.Join(',', ss.ToArray()));
         csg.AppendLine(2, "");
         csg.AppendLine(2, "");
         for (int i = 0; i < ss.Count; i++)
@@ -447,9 +449,9 @@ public partial class MSColumnsDB : List<MSSloupecDB>
             }
             allColumnsWithFirst.Add(name);
         }
-        seznamNameValue = SH.Join(',', allColumnsWithFirst.ToArray());
-        string seznamNameValueBezPrvniho = SH.Join(',', nameFields.ToArray());
-        string nazvySloupcuBezPrvnihoVZavorkach = "(" + SH.Join(',', nameFields.ToArray()) + ")";
+        seznamNameValue = string.Join(',', allColumnsWithFirst.ToArray());
+        string seznamNameValueBezPrvniho = string.Join(',', nameFields.ToArray());
+        string nazvySloupcuBezPrvnihoVZavorkach = "(" + string.Join(',', nameFields.ToArray()) + ")";
         /*
          * TableName je již s TableRow, který slouží k vytváření K
          *
@@ -625,7 +627,7 @@ ParseRow(o);");
         }
 
         // 4) převod vybraných proměnných
-        csg2.Ctor(1, ModifiersConstructor.Public, tableName, "//" + dbPrefix + "AO." + tableNameWithoutTableRowAndBase + "(columns, o)" + Environment.NewLine, CA.ToList<string>("string", "columns", "object[]", "o").ToArray());
+        csg2.Ctor(1, ModifiersConstructor.Public, tableName, "//" + dbPrefix + "AO." + tableNameWithoutTableRowAndBase + "(columns, o)" + Environment.NewLine, CAG.ToList<string>("string", "columns", "object[]", "o").ToArray());
 
         return csg2.ToString();
     }

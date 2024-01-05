@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public class MSTableRowIDNameShort : MSTableRowIDNameT<short>
 {
     public MSTableRowIDNameShort(string tableName, string name) : base(tableName, name)

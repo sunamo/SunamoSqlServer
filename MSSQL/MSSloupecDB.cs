@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public class MSSloupecDB : SloupecDBBase< MSSloupecDB, SqlDbType2>
 {
     public MSSloupecDB() : base()

@@ -1,15 +1,15 @@
-namespace mvc;
+namespace SunamoSqlServer;
 /// <summary>
 /// Sql Array Object
 /// </summary>
 public class SqlAO
 {
-    public static Object[] FillWithDefaultOrMaxValues(string tn, List<string> columns2, Object[] o, Dictionary<string, MSColumnsDB> layer)
+    public static object[] FillWithDefaultOrMaxValues(string tn, List<string> columns2, object[] o, Dictionary<string, MSColumnsDB> layer)
     {
         var dict = layer[tn].dict;
 
         var c = _.allColumns[tn];
-        Object[] result = new Object[c.Count];
+        object[] result = new object[c.Count];
 
         List<int> l = new List<int>(columns2.Count);
 

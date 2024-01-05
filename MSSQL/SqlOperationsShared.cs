@@ -1,8 +1,10 @@
+namespace SunamoSqlServer.MSSQL;
+
 /// <summary>
 /// 12-1-2019 refactoring:
 /// 1)all methods here take ABC if take more than Where. otherwise is allowed params AB[] / object[]
 /// 2) always is table - select / update column - where
-/// 
+///
 /// </summary>
 public partial class SqlOperations : SqlServerHelper
 {
@@ -295,7 +297,7 @@ public partial class SqlOperations : SqlServerHelper
     //        this.conn = conn;
     //    }
 
-    //} 
+    //}
 
     ///// <summary>
     ///// Libovolné z hodnot A2 až A5 může být null, protože se to postupuje metodě AddCommandParameteresArrays. Use CA.TwoDimensionParamsIntoOne instead
@@ -423,7 +425,7 @@ public partial class SqlOperations : SqlServerHelper
     /// <summary>
     /// Conn nastaví automaticky
     /// Vrátí zda byl vymazán alespoň jeden řádek
-    /// 
+    ///
     /// </summary>
     /// <param name="TableName"></param>
     /// <param name="where"></param>
@@ -703,7 +705,7 @@ public partial class SqlOperations : SqlServerHelper
     #region SelectName*OfID*
     #region SelectNameOfID
     /// <summary>
-    /// Vrátí SE, když nebude nalezena 
+    /// Vrátí SE, když nebude nalezena
     /// </summary>
     public SqlResult<string> SelectNameOfID(SqlData data, string tabulka, long id)
     {
@@ -1492,7 +1494,7 @@ public partial class SqlOperations : SqlServerHelper
     }
 
     /// <summary>
-    /// 
+    ///
     /// Jakékoliv změny zde musíš provést i v metodě SelectValuesOfColumnAllRowsString
     /// </summary>
     /// <param name="tabulka"></param>
@@ -1789,7 +1791,7 @@ public partial class SqlOperations : SqlServerHelper
 
     /// <summary>
     /// Tuto metodu nepoužívej například po vkládání, když chceš zjistit ID posledního řádku, protože když tam bude něco smazaného , tak to budeš mít o to posunuté !!
-    /// 
+    ///
     /// </summary>
     public SqlResult<int> SelectFindOutNumberOfRows(SqlData d, string tabulka)
     {
@@ -1822,7 +1824,7 @@ public partial class SqlOperations : SqlServerHelper
     }
 
     /// <summary>
-    /// Vrátí mi všechny položky ze sloupce 
+    /// Vrátí mi všechny položky ze sloupce
     /// </summary>
     public SqlResult<DataTable> SelectGreaterThan(SqlData data, string tableName, string tableColumn, object hodnotaOd)
     {
@@ -1832,7 +1834,7 @@ public partial class SqlOperations : SqlServerHelper
     }
 
     /// <summary>
-    /// 
+    ///
     /// Vrátí null když nenalezne žádný řádek
     /// </summary>
     public SqlResult<object[]> SelectOneRow(SqlData data, string TableName, string nazevSloupce, object hodnotaSloupce)
@@ -1982,8 +1984,8 @@ public partial class SqlOperations : SqlServerHelper
 
     /// <summary>
     /// If no row was found, return max value
-    /// 
-    /// SelectLastIDFromTableSigned2 - Vrátí všechny hodnoty z sloupce A3 a pak počítá od A2.MinValue až narazí na hodnotu která v tabulce nebyla, tak ji vrátí. Proto není potřeba vr nijak inkrementovat ani jinak měnit. 
+    ///
+    /// SelectLastIDFromTableSigned2 - Vrátí všechny hodnoty z sloupce A3 a pak počítá od A2.MinValue až narazí na hodnotu která v tabulce nebyla, tak ji vrátí. Proto není potřeba vr nijak inkrementovat ani jinak měnit.
     /// SelectLastIDFromTableSigned - use MAX operator of SQL. Nedá se použít na desetinné typy
     /// </summary>
     /// <param name="table"></param>
@@ -2079,11 +2081,11 @@ public partial class SqlOperations : SqlServerHelper
 
     /// <summary>
     /// Has signed, therefore can return values below -1
-    /// 
+    ///
     /// SelectLastIDFromTableSigned2 - Vrátí všechny hodnoty z sloupce A3 a pak počítá od A2.MinValue až narazí na hodnotu která v tabulce nebyla, tak ji vrátí. Proto není potřeba vr nijak inkrementovat ani jinak měnit
     /// SelectLastIDFromTableSigned - use MAX operator of SQL. Nedá se použít na desetinné typy. Cast to specific type but return SqlResult<object>
     /// SelectLastIDFromTable - use MAX operator of SQL. Nedá se použít na desetinné typy. return in SqlResult<long>
-    /// 
+    ///
     /// Vrátí mi nejmenší volné číslo tabulky A1
     /// Pokud bude obsazene 1,3, vrátí až 4
     /// </summary>
@@ -2689,7 +2691,7 @@ public partial class SqlOperations : SqlServerHelper
     /// <summary>
     /// Insert2 - For getting ID use SelectLastIDFromTableSigned2 (with 2 postfix)
     /// Tato metoda je vyjímečná, vkládá hodnoty signed, hodnotu kterou vložit si zjistí sám a vrátí ji.
-    /// 
+    ///
     /// Find ID automatically. Use SelectLastIDFromTableSigned2 (as name of method is Insert2)
     /// </summary>
     /// <param name="tabulka"></param>
@@ -2716,8 +2718,8 @@ public partial class SqlOperations : SqlServerHelper
 
     /// <summary>
     /// Insert3 - insert with specified id
-    /// 
-    /// In scz use nowhere 
+    ///
+    /// In scz use nowhere
     /// A2 může být ID nebo cokoliv začínající na ID(ID*)
     /// A2 je ID řádku na který se bude vkládat. Název/hodnota/whatever A2 už nesmí být v A3
     /// Používej tehdy když chceš určit index na který vkládat.
@@ -2790,7 +2792,7 @@ public partial class SqlOperations : SqlServerHelper
 
     /// <summary>
     /// Insert6 - replace (", for "(newid()," -> in 14 will be about one element less than in A3
-    /// 
+    ///
     /// In scz used nowhere
     /// Jediná metoda kde můžeš specifikovat sloupce do kterých chceš vložit
     /// Sloupec který nevkládáš musí být auto_increment
@@ -2836,11 +2838,11 @@ public partial class SqlOperations : SqlServerHelper
     #region Insert - simple methods which uses Insert1
     /// <summary>
     /// For getting ID use SelectLastIDFromTableSigned (without 2 postfix)
-    /// Used in TableRow* 
+    /// Used in TableRow*
     /// Do této metody se vkládají hodnoty bez ID
     /// Vrátí mi nejmenší volné číslo tabulky A1
     /// Pokud bude obsazene 1,3, vrátí až 4
-    /// ID se počítá jako v Sqlite - tedy od 1 
+    /// ID se počítá jako v Sqlite - tedy od 1
     /// A2 je zde proto aby se mohlo určit poslední index a ten inkrementovat a na ten vložit. Název/hodnota/whatever tohoto sloupce musí být 1. v A3.
     /// Používej tehdy když ID sloupec má nějaký speciální název, např. IDUsers
     /// </summary>
@@ -2864,7 +2866,7 @@ public partial class SqlOperations : SqlServerHelper
     #region InsertToRowGuid
     /// <summary>
     /// InsertToRowGuid - insert with generated guid to column A1
-    /// 
+    ///
     /// Raději používej metodu s 3/2A sloupecID, pokud používáš v tabulce sloupce ID, které se nejmenují ID
     /// Sloupec u kterého se bude určovat poslední index a ten inkrementovat a na ten vkládat je ID
     /// Používej tehdy když ID sloupec má nějaký standardní název, Tedy ID, ne IDUsers atd.
@@ -2878,9 +2880,9 @@ public partial class SqlOperations : SqlServerHelper
 
     /// <summary>
     /// InsertToRowGuid2 - insert with generated guid to column A3
-    /// 
+    ///
     /// Do této metody se vkládají hodnoty bez ID
-    /// ID se počítá jako v Sqlite - tedy od 1 
+    /// ID se počítá jako v Sqlite - tedy od 1
     /// A2 je zde proto aby se mohlo určit poslední index a ten inkrementovat a na ten vložit. Název/hodnota/whatever tohoto sloupce musí být 1. v A3.
     /// Používej tehdy když ID sloupec má nějaký speciální název, např. IDUsers
     /// </summary>
@@ -2907,7 +2909,7 @@ public partial class SqlOperations : SqlServerHelper
 
     /// <summary>
     /// InsertToRowGuid3 - insert to specified guid in A3
-    /// 
+    ///
     /// A2 je ID řádku na který se bude vkládat. Název/hodnota/whatever tohoto sloupce musí být 1. v A3.
     /// Používej tehdy když chceš určit index na který vkládat.
     /// </summary>
@@ -3332,7 +3334,7 @@ public partial class SqlOperations : SqlServerHelper
         var update = Update(data, table, sloupecKUpdate, odeber, abc);
         return InstancesSqlResult.Ushort(odeber, update);
     }
-    #endregion 
+    #endregion
     #endregion
 
     #region Update {Op} IntValue
@@ -3464,11 +3466,11 @@ public partial class SqlOperations : SqlServerHelper
         var aktual2 = SelectCellDataTableStringOneRow(data, tableName, sloupecAppend, sloupecID, hodnotaID);
         var aktual = aktual2.result;
 
-        List<string> d = new List<string>(SH.Split(aktual, ","));
+        List<string> d = new List<string>(SHSplit.Split(aktual, ","));
         if (!d.Contains(hodnotaAppend))
         {
             aktual += hodnotaAppend + ",";
-            string save = SH.Join(',', d.ToArray());
+            string save = string.Join(',', d.ToArray());
 
             var update = Update(data, tableName, sloupecAppend, aktual, sloupecID, hodnotaID);
             return InstancesSqlResult.String(save, update);
@@ -3481,9 +3483,9 @@ public partial class SqlOperations : SqlServerHelper
         var aktual2 = SelectCellDataTableStringOneRow(data, tableName, sloupecCut, sloupecID, hodnotaID);
         string aktual = aktual2.result;
 
-        List<string> d = new List<string>(SH.Split(aktual, ","));
+        List<string> d = new List<string>(SHSplit.Split(aktual, ","));
         d.Remove(hodnotaCut);
-        string save = SH.JoinWithoutTrim(",", d);
+        string save = string.Join(WithoutTrim(",", d);
         var update = Update(data, tableName, sloupecCut, save, sloupecID, hodnotaID);
         return InstancesSqlResult.String(save, update);
     }

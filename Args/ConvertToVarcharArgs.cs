@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.Args;
+
 public class ConvertToVarcharArgs
 {
     public CollectionWithoutDuplicates<char> notSupportedChars = new CollectionWithoutDuplicates<char>();

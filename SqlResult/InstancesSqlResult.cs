@@ -1,4 +1,5 @@
-using SunamoExceptions.OnlyInSE;
+namespace SunamoSqlServer.SqlResult;
+
 /// <summary>
 /// A2 in any method (SqlResult dt) cant be never null
 /// </summary>

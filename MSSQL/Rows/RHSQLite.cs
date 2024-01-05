@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL.Rows;
+
 public class RHSQLite
 {
     public static string chyba = "";

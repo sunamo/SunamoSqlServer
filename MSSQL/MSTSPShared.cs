@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public partial class MSTSP
 {
     public SqlConnection conn

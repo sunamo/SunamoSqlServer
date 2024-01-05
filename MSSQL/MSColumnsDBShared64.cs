@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public partial class MSColumnsDB : List<MSSloupecDB>
 {
     static Type type = typeof(MSColumnsDB);

@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public class MSStoredProceduresISql5 : MSStoredProceduresIBase
 {
     static MSStoredProceduresIBase _ci = new MSStoredProceduresIBase();

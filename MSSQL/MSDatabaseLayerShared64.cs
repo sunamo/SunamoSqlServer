@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public partial class MSDatabaseLayer
 {
     public static bool LoadNewConnection(string cs)

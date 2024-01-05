@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public class MSFactoryColumnDB : IFactoryColumnDB<MSSloupecDB, SqlDbType2>
 {
     public static IFactoryColumnDB<MSSloupecDB, SqlDbType2> Instance = new MSFactoryColumnDB();

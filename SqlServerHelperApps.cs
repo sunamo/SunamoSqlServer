@@ -1,3 +1,5 @@
+namespace SunamoSqlServer;
+
 /// <summary>
 /// For sharing with Apps
 /// </summary>
@@ -24,11 +26,11 @@ public partial class SqlServerHelper
             }
         }
 
-        string vr = SH.ReplaceAll(sb.ToString(), AllStrings.space, AllStrings.doubleSpace).Trim();
-        vr = SH.ReplaceAll(vr, AllStrings.bs, " \\");
-        vr = SH.ReplaceAll(vr, AllStrings.bs, "\\ ");
-        vr = SH.ReplaceAll(vr, AllStrings.slash, "/ ");
-        vr = SH.ReplaceAll(vr, AllStrings.slash, " /");
+        string vr = SHReplace.ReplaceAll(sb.ToString(), AllStrings.space, AllStrings.doubleSpace).Trim();
+        vr = SHReplace.ReplaceAll(vr, AllStrings.bs, " \\");
+        vr = SHReplace.ReplaceAll(vr, AllStrings.bs, "\\ ");
+        vr = SHReplace.ReplaceAll(vr, AllStrings.slash, "/ ");
+        vr = SHReplace.ReplaceAll(vr, AllStrings.slash, " /");
         return vr;
     }
 }

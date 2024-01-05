@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.Data;
+
 public class SqlResult<T> : SqlResult
 {
     public T result = default(T);

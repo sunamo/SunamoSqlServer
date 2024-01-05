@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL.Rows;
+
     public class SelectedRows
     {
         public int quantity = 0;

@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL.i;
+
 /// <summary>
 /// Ručně je nutno skrýt veřejný konstruktor a zavolat v něm metodu CreateStaticTables() a vytvořit ci
 /// </summary>

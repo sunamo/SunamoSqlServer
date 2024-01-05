@@ -18,3 +18,4 @@ global using System.Threading;
 global using System.Web;
 global using System;
 global using TSQL;
+global using SunamoExceptions.OnlyInSE;

@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.Layer;
+
 /// <summary>
 /// Must be named ColumnNames, not Columns, due to bad replacing in CopyInWeb
 /// </summary>

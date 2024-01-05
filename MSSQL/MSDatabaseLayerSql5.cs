@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 /// <summary>
 /// Cant be derived from MSDatabaseLayer because its inherit many method with same name (like LoadNewConnectionFirst) and VS call method from MSDatabaseLayer, not desired MSDatabaseLayerSql5
 /// </summary>

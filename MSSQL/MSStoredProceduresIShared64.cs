@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public partial class MSStoredProceduresI : MSStoredProceduresIBase
 {
     public static bool forceIsVps = false;

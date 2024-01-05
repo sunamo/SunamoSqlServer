@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL.i;
+
 public interface ITableRow
 {
     int InsertToTable();

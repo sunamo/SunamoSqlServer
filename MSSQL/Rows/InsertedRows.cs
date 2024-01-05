@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL.Rows;
+
     public class InsertedRows
     {
         public int quantity = 0;

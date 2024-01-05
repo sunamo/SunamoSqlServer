@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.MSSQL;
+
 public class MSBaseRowTable
 {
     protected object[] o = null;

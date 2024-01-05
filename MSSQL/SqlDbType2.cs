@@ -1,4 +1,6 @@
-﻿public enum SqlDbType2
+namespace SunamoSqlServer.MSSQL;
+
+public enum SqlDbType2
 {
     #region Nikdy nepoužívat
     

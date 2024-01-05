@@ -1,3 +1,5 @@
-﻿public partial class TableRowHelper
+namespace SunamoSqlServer.MSSQL;
+
+public partial class TableRowHelper
 {
 }
