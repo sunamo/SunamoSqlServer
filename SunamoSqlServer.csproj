@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Version>24.1.7.1</Version>
+	  <Description>Working with SQL Server</Description>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>DEBUG2;DEBUG;TRACE;ASYNC</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="MSSQL\MSStoredProceduresIBaseSharedWithoutSqlData.cs">
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MSSQL\Wid\">
+    </Folder>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
+    </PackageReference>
+    <PackageReference Include="SunamoCollections" Version="24.1.7.1" />
+    <PackageReference Include="SunamoDevCode" Version="24.1.9.1" />
+    <PackageReference Include="SunamoShared" Version="24.1.7.2" />
+    <PackageReference Include="SunamoStringData" Version="24.1.9.1" />
+    <PackageReference Include="SunamoStringJoin" Version="24.1.5.1" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0">
+    </PackageReference>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6">
+    </PackageReference>
+    <PackageReference Include="TSQL.Parser" Version="2.6.0">
+    </PackageReference>
+  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>
+  </PropertyGroup>
+</Project>
