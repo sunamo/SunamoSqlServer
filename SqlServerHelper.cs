@@ -1,7 +1,3 @@
-using SunamoDictionary;
-using SunamoSqlServer.Enums;
-using SunamoStringData;
-
 namespace SunamoSqlServer;
 
 public partial class SqlServerHelper
@@ -31,7 +27,7 @@ public partial class SqlServerHelper
         foreach (var item in maybeUnicode)
         {
             var b1 = s_availableCharsInVarCharWithoutDiacriticLetters.Contains(item);
-            var b2 = SHData.diacritic.IndexOf(item) != -1;
+            var b2 = diacritic.IndexOf(item) != -1;
 
             if (b1 || b2)
             {

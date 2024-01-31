@@ -1,5 +1,3 @@
-using SunamoStringTrim;
-
 namespace SunamoSqlServer.MSSQL;
 
 //using System.Activities;

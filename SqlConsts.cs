@@ -1,5 +1,3 @@
-using SunamoPlatformUwpInterop.AppData;
-
 namespace SunamoSqlServer;
 
 public class SqlConsts

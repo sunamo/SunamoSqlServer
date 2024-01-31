@@ -3,28 +3,30 @@
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Version>24.1.10.1</Version>
+    <Version>24.1.24.1</Version>
     <Description>Working with SQL Server</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>DEBUG2;DEBUG;TRACE;ASYNC</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="MSSQL\MSStoredProceduresIBaseSharedWithoutSqlData.cs"></None>
+    <None Include="MSSQL\MSStoredProceduresIBaseSharedWithoutSqlData.cs">
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MSSQL\Wid\"></Folder>
+    <Folder Include="MSSQL\Wid\">
+    </Folder>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0"></PackageReference>
-    <PackageReference Include="SunamoCollections" Version="24.1.10.1" />
-    <PackageReference Include="SunamoDevCode" Version="24.1.10.1" />
-    <PackageReference Include="SunamoShared" Version="24.1.12.1" />
-    <PackageReference Include="SunamoStringData" Version="24.1.11.1" />
-    <PackageReference Include="SunamoStringJoin" Version="24.1.10.1" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0"></PackageReference>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6"></PackageReference>
-    <PackageReference Include="TSQL.Parser" Version="2.6.0"></PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
+    </PackageReference>
+    <PackageReference Include="SunamoDevCode" Version="24.1.14.1" />
+    <PackageReference Include="SunamoStringFormat" Version="24.1.23.1" />
+    <PackageReference Include="SunamoStringJoin" Version="24.1.14.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6">
+    </PackageReference>
+    <PackageReference Include="TSQL.Parser" Version="2.6.0">
+    </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>

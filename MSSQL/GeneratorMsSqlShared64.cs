@@ -288,7 +288,7 @@ public partial class GeneratorMsSql
                 {
                     sb.Append(" AND ");
                 }
-                sb.Append(SH.Format2(" {0} = {1} ", var.A, "@p" + pridavatOd));
+                sb.Append(SHFormat.Format2(" {0} = {1} ", var.A, "@p" + pridavatOd));
                 pridavatOd++;
             }
 

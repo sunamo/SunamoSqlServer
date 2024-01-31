@@ -12,7 +12,7 @@ public partial class MSTSP
     /// </summary>
     public DataTable SelectDataTableSelective(SqlTransaction tran, string tabulka, string sloupecID, object id, string hledanySloupec)
     {
-        SqlCommand comm = new SqlCommand(SH.Format2("SELECT {0} FROM {1} WHERE {2} = @p0", hledanySloupec, tabulka, sloupecID));
+        SqlCommand comm = new SqlCommand(SHFormat.Format2("SELECT {0} FROM {1} WHERE {2} = @p0", hledanySloupec, tabulka, sloupecID));
         AddCommandParameter(comm, 0, id);
         //NT
         return this.SelectDataTable(tran, comm);
@@ -22,7 +22,7 @@ public partial class MSTSP
     /// </summary>
     public DataTable SelectDataTableSelective(SqlTransaction tran, string TableName, ABC where, string nazvySloupcu)
     {
-        SqlCommand comm = new SqlCommand(SH.Format2("SELECT {0} FROM {1} {2}", nazvySloupcu, TableName, GeneratorMsSql.CombinedWhere(where)));
+        SqlCommand comm = new SqlCommand(SHFormat.Format2("SELECT {0} FROM {1} {2}", nazvySloupcu, TableName, GeneratorMsSql.CombinedWhere(where)));
         AddCommandParameterFromAbc(comm, where);
         //NTd
         return this.SelectDataTable(tran, comm);
@@ -97,7 +97,7 @@ public partial class MSTSP
             AddCommandParameter(comm, i, _params[i]);
         }
         return SelectDataTable(tran, comm);
-        //return SelectDataTable(SH.Format2(sql, _params));
+        //return SelectDataTable(SHFormat.Format2(sql, _params));
     }
 
     private static void AddCommandParameterFromAbc(SqlCommand comm, params AB[] where)
@@ -119,7 +119,7 @@ public partial class MSTSP
     }
 
 
-public List<int> SelectValuesOfColumnInt(SqlTransaction tran, string tabulka, string sloupecHledaný, string sloupecVeKteremHledat, object hodnota)
+    public List<int> SelectValuesOfColumnInt(SqlTransaction tran, string tabulka, string sloupecHledaný, string sloupecVeKteremHledat, object hodnota)
     {
         SqlCommand comm = new SqlCommand(string.Format("SELECT {0} FROM {1} WHERE {2} = @p0", sloupecHledaný, tabulka, sloupecVeKteremHledat));
         AddCommandParameter(comm, 0, hodnota);
@@ -144,7 +144,7 @@ public List<int> SelectValuesOfColumnInt(SqlTransaction tran, string tabulka, st
         return vr;
     }
 
-/// <summary>
+    /// <summary>
     /// POkud bude v DB hodnota DBNull.Value, vrátí se -1
     /// </summary>
     /// <param name="tabulka"></param>
@@ -168,7 +168,7 @@ public List<int> SelectValuesOfColumnInt(SqlTransaction tran, string tabulka, st
         }
         return vr;
     }
-/// <summary>
+    /// <summary>
     /// Tato metoda má navíc možnost specifikovat simple where.
     /// </summary>
     /// <param name="tabulka"></param>
@@ -195,7 +195,7 @@ public List<int> SelectValuesOfColumnInt(SqlTransaction tran, string tabulka, st
         }
         return vr;
     }
-public List<int> SelectValuesOfColumnAllRowsInt(SqlTransaction tran, string tabulka, string hledanySloupec, params AB[] aB)
+    public List<int> SelectValuesOfColumnAllRowsInt(SqlTransaction tran, string tabulka, string hledanySloupec, params AB[] aB)
     {
         string hodnoty = MSDatabaseLayer.GetValues(aB.ToArray());
 

@@ -1,5 +1,3 @@
-using SunamoStringTrim;
-
 namespace SunamoSqlServer.MSSQL;
 
 public class SloupecDBBase<MSSloupecDB, SqlDbType2>
@@ -150,7 +148,7 @@ public class SloupecDBBase<MSSloupecDB, SqlDbType2>
     #region d
     public string ReferencesTo()
     {
-        return SH.Format2("{0}[{1}]", referencesTable, referencesColumn);
+        return SHFormat.Format2("{0}[{1}]", referencesTable, referencesColumn);
     }
 
     public string InfoToTextBox()

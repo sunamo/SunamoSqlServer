@@ -43,7 +43,7 @@ public partial class GeneratorMsSql
                 {
                     sb.Append(" AND ");
                 }
-                sb.Append(SH.Format2(" {0} != {1} ", var.A, "@p" + pridavatOd));
+                sb.Append(SHFormat.Format2(" {0} != {1} ", var.A, "@p" + pridavatOd));
                 pridavatOd++;
             }
 
@@ -65,7 +65,7 @@ public partial class GeneratorMsSql
         sb.Append("SELECT TOP(1)" + " " + vracenySloupec);
         sb.Append(" " + "FROM" + " " + table);
         sb.Append(" " + "WHERE" + " ");
-        sb.Append(SH.Format2(" {0} = @p0 ", idColumnName));
+        sb.Append(SHFormat.Format2(" {0} = @p0 ", idColumnName));
         return sb.ToString();
     }
 
@@ -80,7 +80,7 @@ public partial class GeneratorMsSql
     {
         StringBuilder sb = new StringBuilder();
         sb.Append(" " + "WHERE" + " ");
-        sb.Append(SH.Format2(" {0} = @p0 ", sloupec));
+        sb.Append(SHFormat.Format2(" {0} = @p0 ", sloupec));
         return sb.ToString();
     }
 
@@ -88,7 +88,7 @@ public partial class GeneratorMsSql
     {
         StringBuilder sb = new StringBuilder();
         sb.Append(" " + "WHERE" + " ");
-        sb.Append(SH.Format2(" {0} = @p{1} ", sloupec, pocetJizPridanychParametru));
+        sb.Append(SHFormat.Format2(" {0} = @p{1} ", sloupec, pocetJizPridanychParametru));
         return sb.ToString();
     }
 
@@ -98,7 +98,7 @@ public partial class GeneratorMsSql
         sb.Append("SELECT" + " " + columns);
         sb.Append(" " + "FROM" + " " + tabulka);
         sb.Append(" " + "WHERE" + " ");
-        sb.Append(SH.Format2(" {0} = @p0 ", sloupec));
+        sb.Append(SHFormat.Format2(" {0} = @p0 ", sloupec));
         return sb.ToString();
     }
     public static string OrderBy(string orderByColumn, SortOrder sortOrder)
@@ -215,7 +215,7 @@ public partial class GeneratorMsSql
                 // TODO: Zjistit si zda se tu skutečně dává AND
                 sb.Append(AllStrings.comma);
             }
-            sb.Append(SH.Format2(" {0} = @p" + p.ToString(), var.A));
+            sb.Append(SHFormat.Format2(" {0} = @p" + p.ToString(), var.A));
             p++;
         }
         return sb.ToString();
@@ -250,7 +250,7 @@ public partial class GeneratorMsSql
             {
                 sb.Append(" OR ");
             }
-            sb.Append(SH.Format2(" {0} = {1} ", var.A, "@p" + p));
+            sb.Append(SHFormat.Format2(" {0} = {1} ", var.A, "@p" + p));
             p++;
         }
         if (pCopy != 0)
@@ -292,7 +292,7 @@ public partial class GeneratorMsSql
                 sb.Append(" OR ");
             }
 
-            sb.Append(SH.Format2(" {0} = {1} ", var.A, "@p" + p));
+            sb.Append(SHFormat.Format2(" {0} = {1} ", var.A, "@p" + p));
             p++;
         }
 
@@ -322,6 +322,6 @@ public partial class GeneratorMsSql
     public static string Insert4(int i2, string tabulka, int pocetSloupcu)
     {
         string hodnoty = GetValuesDirect(i2, pocetSloupcu);
-        return SH.Format2("INSERT INTO {0} VALUES {1}", tabulka, hodnoty);
+        return SHFormat.Format2("INSERT INTO {0} VALUES {1}", tabulka, hodnoty);
     }
 }

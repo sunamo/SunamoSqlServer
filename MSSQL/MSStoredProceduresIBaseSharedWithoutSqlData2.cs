@@ -422,7 +422,7 @@ public partial class MSStoredProceduresIBase : SqlServerHelper
             //var sloupce2 = CA.TwoDimensionParamsIntoOne(sloupce);
             string hodnoty = MSDatabaseLayer.GetValues(CA.JoinVariableAndArray(IDUsers, sloupce2));
 
-            SqlCommand comm = new SqlCommand(SH.Format2("INSERT INTO {0} VALUES {1}", tabulka, hodnoty), conn);
+            SqlCommand comm = new SqlCommand(SHFormat.Format2("INSERT INTO {0} VALUES {1}", tabulka, hodnoty), conn);
             comm.Parameters.AddWithValue("@p0", IDUsers);
             int to = sloupce2.Length;
             for (int i = 0; i < to; i++)
