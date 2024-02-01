@@ -345,7 +345,7 @@ namespace SunamoSqlServer.MSSQL;
 //            // Dont use like idiot TwoDimensionParamsIntoOne where is not needed - just iterate. Must more use radio and less blindness
 //            //var sloupce2 = CA.TwoDimensionParamsIntoOne(sloupce);
 //            string hodnoty = MSDatabaseLayer.GetValues(CA.JoinVariableAndArray(IDUsers, sloupce2));
-//            SqlCommand comm = new SqlCommand(SHFormat.Format2("INSERT INTO {0} VALUES {1}", tabulka, hodnoty), conn);
+//            SqlCommand comm = new SqlCommand(string.Format("INSERT INTO {0} VALUES {1}", tabulka, hodnoty), conn);
 //            comm.Parameters.AddWithValue("@p0", IDUsers);
 //            int to = sloupce2.Length();
 //            for (int i = 0; i < to; i++)
@@ -2103,7 +2103,7 @@ namespace SunamoSqlServer.MSSQL;
 //        }
 //        else
 //        {
-//            ThrowEx.Custom("V klazuli if v metodě MSStoredProceduresIBase.SelectLastIDFromTableSigned nebyl nalezen typ " + idt.FullName.ToString());
+//            throw new Exception("V klazuli if v metodě MSStoredProceduresIBase.SelectLastIDFromTableSigned nebyl nalezen typ " + idt.FullName.ToString());
 //        }
 //    }
 //    /// <summary>
@@ -2151,7 +2151,7 @@ namespace SunamoSqlServer.MSSQL;
 //            }
 //            else
 //            {
-//                ThrowEx.Custom("V klazuli if v metodě MSStoredProceduresIBase.SelectLastIDFromTableSigned nebyl nalezen typ " + idt.FullName.ToString());
+//                throw new Exception("V klazuli if v metodě MSStoredProceduresIBase.SelectLastIDFromTableSigned nebyl nalezen typ " + idt.FullName.ToString());
 //            }
 //        }
 //        if (idt == typeof(Byte))
@@ -2186,7 +2186,7 @@ namespace SunamoSqlServer.MSSQL;
 //        {
 //            return UInt64.Parse(dd);
 //        }
-//        //ThrowEx.Custom("Nepovolený nehodnotový typ v metodě GetMinValueForType");
+//        //throw new Exception("Nepovolený nehodnotový typ v metodě GetMinValueForType");
 //        return decimal.Parse(dd);
 //    }
 //    public int SelectFirstAvailableIntIndex(bool signed, string table, string column)

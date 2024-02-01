@@ -1,8 +1,15 @@
+
 namespace SunamoSqlServer;
+using Diacritics.Extensions;
+using SunamoDictionary;
+using SunamoExceptions.OnlyInSE;
+using SunamoSqlServer._sunamo;
+using SunamoSqlServer.Enums;
+
 
 public partial class SqlServerHelper
 {
-    public static List<char> allowedInPassword = CAG.ToList<char>('!', '@', '#', '$', '%', '^', '&', '*', '?', '_', '~');
+    public static List<char> allowedInPassword = new List<char>(['!', '@', '#', '$', '%', '^', '&', '*', '?', '_', '~']);
     public const String diacritic = "\u00E1\u010D\u010F\u00E9\u011B\u00ED\u0148\u00F3\u0161\u0165\u00FA\u016F\u00FD\u0159\u017E\u00C1\u010C\u010E\u00C9\u011A\u00CD\u0147\u00D3\u0160\u0164\u00DA\u016E\u00DD\u0158\u017D";
     public static List<char> s_availableCharsInVarCharWithoutDiacriticLetters = null;
 
@@ -17,7 +24,7 @@ public partial class SqlServerHelper
 
 
         s_availableCharsInVarCharWithoutDiacriticLetters.AddRange(allowedInPassword);
-        CAG.RemoveDuplicitiesList<char>(s_availableCharsInVarCharWithoutDiacriticLetters);
+        s_availableCharsInVarCharWithoutDiacriticLetters = s_availableCharsInVarCharWithoutDiacriticLetters.Distinct().ToList();
     }
 
     public static string ConvertToVarChar(string maybeUnicode, ConvertToVarcharArgs e = null)
@@ -37,7 +44,7 @@ public partial class SqlServerHelper
             {
                 string before = item.ToString();
                 // Is use Diacritics package which allow pass only string, not char
-                var after = SH.TextWithoutDiacritic(before);
+                var after = before.RemoveDiacritics();
                 // if wont be here !char.IsWhiteSpace(item), it will strip newlines
                 var b3 = before != after;
                 var b4 = char.IsWhiteSpace(item);
@@ -176,7 +183,7 @@ public partial class SqlServerHelper
                     }
                     catch (Exception ex)
                     {
-                        ThrowEx.Custom($"Error in SqlServerHelper.Insert columnNames.Count: {columnNames.Count} serie: {serie} table: {table} sql: {sql}");
+                        throw new Exception($"Error in SqlServerHelper.Insert columnNames.Count: {columnNames.Count} serie: {serie} table: {table} sql: {sql}");
                     }
                 }
                 i++;

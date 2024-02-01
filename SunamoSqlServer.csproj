@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Version>24.1.24.1</Version>
+    <Version>24.2.1.2</Version>
     <Description>Working with SQL Server</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -18,11 +18,14 @@
     </Folder>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
-    </PackageReference>
-    <PackageReference Include="SunamoDevCode" Version="24.1.14.1" />
-    <PackageReference Include="SunamoStringFormat" Version="24.1.23.1" />
-    <PackageReference Include="SunamoStringJoin" Version="24.1.14.1" />
+    <PackageReference Include="CaseDotNet" Version="0.3.36" />
+    <PackageReference Include="SunamoCollections" Version="24.2.1.1" />
+    <PackageReference Include="SunamoData" Version="24.2.1.1" />
+    <PackageReference Include="SunamoDevCode" Version="24.1.24.1" />
+    <PackageReference Include="SunamoInterfaces" Version="24.2.1.2" />
+    <PackageReference Include="SunamoNumbers" Version="24.2.1.2" />
+    <PackageReference Include="SunamoShared" Version="24.2.1.2" />
+    <PackageReference Include="SunamoTextBuilder" Version="24.2.1.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6">
     </PackageReference>
     <PackageReference Include="TSQL.Parser" Version="2.6.0">

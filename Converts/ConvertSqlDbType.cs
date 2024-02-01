@@ -40,7 +40,7 @@ public class ConvertSqlDbType
             case SqlDbType.Variant:
             case SqlDbType.Xml:
             default:
-                ThrowEx.Custom("Program nezná pro výčtový typ SqlDbType2 hodnotu" + " " + db.ToString());
+                throw new Exception("Program nezná pro výčtový typ SqlDbType2 hodnotu" + " " + db.ToString());
                 break;
         }
         return (SqlDbType2)Enum.Parse(typeof(SqlDbType2), db.ToString());

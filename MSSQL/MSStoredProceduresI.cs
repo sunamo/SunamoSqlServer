@@ -9,7 +9,7 @@ public partial class MSStoredProceduresI : MSStoredProceduresIBase // : IStoredP
 
     public static void SetVariable(SqlConnection ci, string databaseName)
     {
-        ThrowEx.Custom( "Commented due to new approach - create new db conn with every request");
+        throw new Exception( "Commented due to new approach - create new db conn with every request");
         //_ci.conn = ci;
         //MSDatabaseLayer._conn = ci;
         //_databaseName = databaseName;

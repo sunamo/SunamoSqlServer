@@ -1,8 +1,11 @@
+
 namespace SunamoSqlServer;
+using SunamoExceptions.OnlyInSE;
+
 
 public partial class SqlServerHelper
 {
-    
+
 
     public static T EmptyNonSigned<T>() where T : struct
     {
@@ -23,14 +26,14 @@ public partial class SqlServerHelper
     }
 
 
-    
-
-    
 
 
-    
 
-    
 
-    
+
+
+
+
+
+
 }

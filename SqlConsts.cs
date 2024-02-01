@@ -46,10 +46,10 @@ public class SqlMeasureTimeHelper
     {
         if (!MSStoredProceduresI.measureTime)
         {
-            ThrowEx.Custom("MSStoredProceduresI.measureTime must be true to run NewSw");
+            throw new Exception("MSStoredProceduresI.measureTime must be true to run NewSw");
         }
 
-        if (VpsHelperSunamo.IsVps || MSStoredProceduresI.forceIsVps)
+        if (/*VpsHelperSunamo.IsVps ||*/ MSStoredProceduresI.forceIsVps)
         {
             var bufferInKb = 65536 / 8; //8192
             string pathSqlLog = PathSqlLog();
@@ -75,9 +75,10 @@ public class SqlMeasureTimeHelper
 
     private string PathSqlLog()
     {
-        var dt = DateTime.Now;
-        string r = FS.GetFileSeries(AppData.ci.GetFolder(AppFolders.Logs), fn + $"{dt.Year}-{dt.Month}-{dt.Day}", ".txt");
-        return r;
+        throw new NotImplementedException();
+        //var dt = DateTime.Now;
+        //string r = Directory.GetFiles(AppData.ci.GetFolder(AppFolders.Logs), fn + $"{dt.Year}-{dt.Month}-{dt.Day}", ".txt");
+        //return r;
     }
 
 

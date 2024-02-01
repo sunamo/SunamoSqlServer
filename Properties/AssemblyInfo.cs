@@ -1,3 +1,5 @@
+namespace SunamoSqlServer.Properties;
+
 //namespace SunamoSqlServer.Properties;
 
 //// General Information about an assembly is controlled through the following

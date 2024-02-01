@@ -1,4 +1,9 @@
+
 namespace SunamoSqlServer.MSSQL;
+using Case.NET;
+using SunamoDevCode;
+using SunamoDevCode.Enums;
+
 
 public partial class MSColumnsDB : List<MSSloupecDB>
 {
@@ -43,7 +48,7 @@ public partial class MSColumnsDB : List<MSSloupecDB>
         if (nazevTabulky.Contains("_"))
         {
             isDynamicTable = true;
-            nazevTabulky = ConvertPascalConvention.ToConvention(nazevTabulky);
+            nazevTabulky = CaseConverter.PascalCase.ConvertCase(nazevTabulky); // ConvertPascalConvention.ToConvention(nazevTabulky);
         }
         tableName = "TableRow" + nazevTabulky + "4";
         List<string> paramsForCtor = new List<string>(this.Count * 2);
@@ -74,7 +79,7 @@ public partial class MSColumnsDB : List<MSSloupecDB>
                 else
                 {
                     // Je to například IDMisters
-                    ThrowEx.Custom("V prvním sloupci není řádek ID nebo ID*");
+                    throw new Exception("V prvním sloupci není řádek ID nebo ID*");
                 }
             }
             else

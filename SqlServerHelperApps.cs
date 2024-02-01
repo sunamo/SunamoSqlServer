@@ -1,4 +1,7 @@
+
 namespace SunamoSqlServer;
+using SunamoSqlServer._sunamo;
+
 
 /// <summary>
 /// For sharing with Apps

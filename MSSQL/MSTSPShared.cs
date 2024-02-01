@@ -12,7 +12,7 @@ public partial class MSTSP
     /// </summary>
     public DataTable SelectDataTableSelective(SqlTransaction tran, string tabulka, string sloupecID, object id, string hledanySloupec)
     {
-        SqlCommand comm = new SqlCommand(SHFormat.Format2("SELECT {0} FROM {1} WHERE {2} = @p0", hledanySloupec, tabulka, sloupecID));
+        SqlCommand comm = new SqlCommand(string.Format("SELECT {0} FROM {1} WHERE {2} = @p0", hledanySloupec, tabulka, sloupecID));
         AddCommandParameter(comm, 0, id);
         //NT
         return this.SelectDataTable(tran, comm);
@@ -22,7 +22,7 @@ public partial class MSTSP
     /// </summary>
     public DataTable SelectDataTableSelective(SqlTransaction tran, string TableName, ABC where, string nazvySloupcu)
     {
-        SqlCommand comm = new SqlCommand(SHFormat.Format2("SELECT {0} FROM {1} {2}", nazvySloupcu, TableName, GeneratorMsSql.CombinedWhere(where)));
+        SqlCommand comm = new SqlCommand(string.Format("SELECT {0} FROM {1} {2}", nazvySloupcu, TableName, GeneratorMsSql.CombinedWhere(where)));
         AddCommandParameterFromAbc(comm, where);
         //NTd
         return this.SelectDataTable(tran, comm);
@@ -97,7 +97,7 @@ public partial class MSTSP
             AddCommandParameter(comm, i, _params[i]);
         }
         return SelectDataTable(tran, comm);
-        //return SelectDataTable(SHFormat.Format2(sql, _params));
+        //return SelectDataTable(string.Format(sql, _params));
     }
 
     private static void AddCommandParameterFromAbc(SqlCommand comm, params AB[] where)

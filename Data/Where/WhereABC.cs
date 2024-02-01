@@ -1,4 +1,7 @@
+
 namespace SunamoSqlServer.Data.Where;
+using SunamoData.Data;
+
 
 public class WhereABC
 {

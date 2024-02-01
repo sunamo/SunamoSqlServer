@@ -1,4 +1,7 @@
+
 namespace SunamoSqlServer;
+using SunamoTextOutputGenerator;
+
 
 public class SqlDebug
 {

@@ -1,4 +1,7 @@
+
 namespace SunamoSqlServer.MSSQL;
+using SunamoData.Data;
+
 
 public class GeneratorMsSqlWorker
 {
@@ -105,16 +108,16 @@ public class GeneratorMsSqlWorker
         {
             if (SqlServerHelper.IsNull(var.B))
             {
-                sb.Append(SHFormat.Format2(" {0} is not null ", var.A));
+                sb.Append(string.Format(" {0} is not null ", var.A));
             }
             else
             {
-                sb.Append(SHFormat.Format2(" {0} != {1} ", var.A, "@p" + p));
+                sb.Append(string.Format(" {0} != {1} ", var.A, "@p" + p));
             }
         }
         else
         {
-            sb.Append(SHFormat.Format2(" {0} " + op + " {1} ", var.A, val));
+            sb.Append(string.Format(" {0} " + op + " {1} ", var.A, val));
         }
 
         p++;
@@ -224,7 +227,7 @@ public class GeneratorMsSqlWorker
                         {
                             sb.Append(" AND ");
                         }
-                        sb.Append(SHFormat.Format2(" {0} > {1} ", var.A, "@p" + p));
+                        sb.Append(string.Format(" {0} > {1} ", var.A, "@p" + p));
                         p++;
                     }
                     //

@@ -1,4 +1,12 @@
+
 namespace SunamoSqlServer.MSSQL;
+using SunamoData.Data;
+using SunamoEnums.Enums;
+using SunamoExceptions.OnlyInSE;
+using SunamoShared.Helpers.Text;
+using SunamoTextBuilder;
+using SunamoValues;
+
 
 public partial class GeneratorMsSql
 {
@@ -288,7 +296,7 @@ public partial class GeneratorMsSql
                 {
                     sb.Append(" AND ");
                 }
-                sb.Append(SHFormat.Format2(" {0} = {1} ", var.A, "@p" + pridavatOd));
+                sb.Append(string.Format(" {0} = {1} ", var.A, "@p" + pridavatOd));
                 pridavatOd++;
             }
 

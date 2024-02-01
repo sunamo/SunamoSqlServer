@@ -1,4 +1,8 @@
+
 namespace SunamoSqlServer.MSSQL;
+using SunamoBts;
+using SunamoExceptions.OnlyInSE;
+
 
 public partial class MSDatabaseLayer //:MSDatabaseLayerBase
 {
@@ -53,7 +57,7 @@ public partial class MSDatabaseLayer //:MSDatabaseLayerBase
             case "System.Byte":
                 return SqlDbType.TinyInt;
             default:
-                ThrowEx.Custom("Neimplementovaná větev");
+                throw new Exception("Neimplementovaná větev");
                 break;
         }
 
@@ -162,7 +166,7 @@ public partial class MSDatabaseLayer //:MSDatabaseLayerBase
         }
         else
         {
-            ThrowEx.Custom("Snažíte se vytvořit třídu s nepodporovaným typem");
+            throw new Exception("Snažíte se vytvořit třídu s nepodporovaným typem");
             return null;
         }
     }
@@ -306,7 +310,7 @@ public partial class MSDatabaseLayer //:MSDatabaseLayerBase
         }
         else
         {
-            ThrowEx.Custom("Snažíte se vytvořit název třídy s nepodporovaným typem");
+            throw new Exception("Snažíte se vytvořit název třídy s nepodporovaným typem");
             return null;
         }
     }
@@ -366,7 +370,7 @@ public partial class MSDatabaseLayer //:MSDatabaseLayerBase
             case SqlDbType.Structured:
             case SqlDbType.Udt:
             case SqlDbType.Xml:
-                ThrowEx.Custom("Snažíte se převést na int strukturovaný(složitý) datový typ");
+                throw new Exception("Snažíte se převést na int strukturovaný(složitý) datový typ");
                 break;
             case SqlDbType.UniqueIdentifier:
                 return "Guid";
@@ -379,7 +383,7 @@ public partial class MSDatabaseLayer //:MSDatabaseLayerBase
                 return "object";
 
             default:
-                ThrowEx.Custom("Snažíte se převést datový typ, pro který není implementována větev");
+                throw new Exception("Snažíte se převést datový typ, pro který není implementována větev");
                 return null;
         }
 
@@ -509,7 +513,7 @@ public partial class MSDatabaseLayer //:MSDatabaseLayerBase
             case SqlDbType.Xml:
 
             default:
-                ThrowEx.Custom("Nepodporovaný datový typ");
+                throw new Exception("Nepodporovaný datový typ");
                 break;
 
         }

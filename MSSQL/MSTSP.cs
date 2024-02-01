@@ -85,7 +85,7 @@ static Type type = typeof(MSTSP);
             return null;
         }
         return null;
-        //ThrowEx.Custom("Zadaná buňka nebyla nalezena");
+        //throw new Exception("Zadaná buňka nebyla nalezena");
     }
     private bool GetCellDataTableBool(DataTable dataTable, int radek, int sloupec)
     {

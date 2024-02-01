@@ -1,5 +1,10 @@
 namespace SunamoSqlServer.MSSQL;
 
+
+using SunamoArgs;
+using SunamoValues;
+
+
 public class SloupecDBBase<MSSloupecDB, SqlDbType2>
 {
 
@@ -70,7 +75,7 @@ public class SloupecDBBase<MSSloupecDB, SqlDbType2>
     {
         get
         {
-            return SHTrim.TrimStartAndEnd(delka, AllStrings.lb, AllStrings.rb);
+            return delka.TrimStart('(').TrimEnd(')'); //SHTrim.TrimStartAndEnd(delka, AllStrings.lb, AllStrings.rb);
         }
     }
     public bool identityIncrementBy1 = false;
@@ -148,7 +153,7 @@ public class SloupecDBBase<MSSloupecDB, SqlDbType2>
     #region d
     public string ReferencesTo()
     {
-        return SHFormat.Format2("{0}[{1}]", referencesTable, referencesColumn);
+        return string.Format("{0}[{1}]", referencesTable, referencesColumn);
     }
 
     public string InfoToTextBox()
@@ -156,9 +161,9 @@ public class SloupecDBBase<MSSloupecDB, SqlDbType2>
         StringBuilder sb = new StringBuilder();
         sb.AppendLine("Datový typ" + ": " + databaseLayer.usedTa[typ]);
         sb.AppendLine("Název" + ": " + _nazev);
-        sb.AppendLine("Je primárním klíčem" + ": " + BTS.BoolToStringEn(primaryKey));
-        sb.AppendLine("Nemusí být zadána" + ": " + BTS.BoolToStringEn(canBeNull));
-        sb.AppendLine("Musí být jedinečná" + ": " + BTS.BoolToStringEn(mustBeUnique));
+        //sb.AppendLine("Je primárním klíčem" + ": " + BTS.BoolToStringEn(primaryKey));
+        //sb.AppendLine("Nemusí být zadána" + ": " + BTS.BoolToStringEn(canBeNull));
+        //sb.AppendLine("Musí být jedinečná" + ": " + BTS.BoolToStringEn(mustBeUnique));
         sb.AppendLine();
         if (referencesTable != null)
         {

@@ -1,4 +1,10 @@
+
 namespace SunamoSqlServer.MSSQL;
+using SunamoData.Data;
+using SunamoShared.Helpers.Text;
+using SunamoTextBuilder;
+using SunamoValues;
+
 
 public class GeneratorMsSqlNoParam
 {
@@ -14,7 +20,7 @@ public class GeneratorMsSqlNoParam
 
     public static string DeleteOneRow(string tn, ABC where)
     {
-        InstantSB sb = new InstantSB(AllStrings.space);
+        var sb = new InstantSB(AllStrings.space);
         sb.AddItem(SqlConsts.delete);
         sb.AddItem(SqlConsts.top1);
         sb.AddItem(SqlConsts.from);

@@ -1,5 +1,7 @@
 namespace SunamoSqlServer.Data.Where;
 
+
+
 public class WhereAB
 {
     public AB[] ab = null;

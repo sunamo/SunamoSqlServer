@@ -1,4 +1,14 @@
+
 namespace SunamoSqlServer.MSSQL;
+using SunamoCollections;
+using SunamoData.Data;
+using SunamoExceptions.OnlyInSE;
+using SunamoNumbers;
+using SunamoParsing;
+using SunamoString;
+using SunamoStringJoin;
+using SunamoStringSplit;
+
 
 /// <summary>
 /// 12-1-2019 refactoring:
@@ -8,7 +18,7 @@ namespace SunamoSqlServer.MSSQL;
 /// </summary>
 public partial class MSStoredProceduresIBase : SqlServerHelper
 {
-    public static PpkOnDrive loggedCommands = null;
+    //public static PpkOnDrive loggedCommands = null;
 
     //private DataTable SelectDataTable(SqlConnection conn, string sql, params object[] _params)
     //{
@@ -422,7 +432,7 @@ public partial class MSStoredProceduresIBase : SqlServerHelper
             //var sloupce2 = CA.TwoDimensionParamsIntoOne(sloupce);
             string hodnoty = MSDatabaseLayer.GetValues(CA.JoinVariableAndArray(IDUsers, sloupce2));
 
-            SqlCommand comm = new SqlCommand(SHFormat.Format2("INSERT INTO {0} VALUES {1}", tabulka, hodnoty), conn);
+            SqlCommand comm = new SqlCommand(string.Format("INSERT INTO {0} VALUES {1}", tabulka, hodnoty), conn);
             comm.Parameters.AddWithValue("@p0", IDUsers);
             int to = sloupce2.Length;
             for (int i = 0; i < to; i++)

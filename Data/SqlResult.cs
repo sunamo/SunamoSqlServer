@@ -1,4 +1,7 @@
+
 namespace SunamoSqlServer.Data;
+using SunamoExceptions.OnlyInSE;
+
 
 public class SqlResult<T> : SqlResult
 {

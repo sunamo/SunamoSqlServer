@@ -1,4 +1,8 @@
+
 namespace SunamoSqlServer.MSSQL;
+using SunamoBts;
+using SunamoExceptions.OnlyInSE;
+
 
 public partial class MSStoredProceduresIBase : SqlServerHelper
 {
@@ -374,7 +378,7 @@ public partial class MSStoredProceduresIBase : SqlServerHelper
         else
 
         {
-            ThrowEx.Custom("V klazuli if v metodě MSStoredProceduresIBase.SelectLastIDFromTableSigned nebyl nalezen typ " + idt.FullName.ToString());
+            throw new Exception("V klazuli if v metodě MSStoredProceduresIBase.SelectLastIDFromTableSigned nebyl nalezen typ " + idt.FullName.ToString());
             return null;
         }
     }
@@ -577,7 +581,7 @@ public partial class MSStoredProceduresIBase : SqlServerHelper
             }
             else
             {
-                ThrowEx.Custom("V klazuli if v metodě MSStoredProceduresIBase.SelectLastIDFromTableSigned nebyl nalezen typ " + idt.FullName.ToString());
+                throw new Exception("V klazuli if v metodě MSStoredProceduresIBase.SelectLastIDFromTableSigned nebyl nalezen typ " + idt.FullName.ToString());
             }
         }
 
@@ -616,7 +620,7 @@ public partial class MSStoredProceduresIBase : SqlServerHelper
         {
             return UInt64.Parse(dd) + add;
         }
-        //ThrowEx.Custom("Nepovolený nehodnotový typ v metodě GetMinValueForType") + 1;
+        //throw new Exception("Nepovolený nehodnotový typ v metodě GetMinValueForType") + 1;
         return decimal.Parse(dd) + 1;
     }
 

@@ -1,4 +1,7 @@
+
 namespace SunamoSqlServer.MSSQL;
+using SunamoExceptions.OnlyInSE;
+
 
 public class MSStoredProceduresISql5 : MSStoredProceduresIBase
 {
@@ -46,21 +49,21 @@ public class MSStoredProceduresISql5 : MSStoredProceduresIBase
         {
             //if (MSDatabaseLayerSql5.conn != null)
             //{
-            //    ThrowEx.Custom("Třída MSDatabaseLayerCustom nemůže být inicializovana novým CS");
+            //    throw new Exception("Třída MSDatabaseLayerCustom nemůže být inicializovana novým CS");
             //}
 
             //MSDatabaseLayerSql5.AssignConnectionString(cs);
             //_databaseName = databaseName;
             //ci = new MSStoredProceduresIBase(MSDatabaseLayerSql5.conn);
-            }
+        }
     }
-    
+
     /// <summary>
     /// Toto se musí volat ručně před každým použitím této třídy.
     /// </summary>
     public static void CreateInstance(string dataSource, string database, string databaseName)
     {
-                MSDatabaseLayerSql5.LoadNewConnection(dataSource, database);
+        MSDatabaseLayerSql5.LoadNewConnection(dataSource, database);
         _databaseName = databaseName;
         ci = new MSStoredProceduresIBase();
     }

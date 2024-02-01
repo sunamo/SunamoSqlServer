@@ -1,4 +1,7 @@
+
 namespace SunamoSqlServer.SqlResults;
+using SunamoExceptions.OnlyInSE;
+
 
 /// <summary>
 /// A2 in any method (SqlResult dt) cant be never null
@@ -70,7 +73,7 @@ public class InstancesSqlResult
             ThrowEx.NotImplementedCase(t);
         }
 
-        return RuntimeHelper.CastToGeneric<T>(r);
+        return (T)r; //RuntimeHelper.CastToGeneric<T>(r);
     }
 
     public static SqlResult<short> Short(short odeber, SqlResult result)

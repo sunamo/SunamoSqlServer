@@ -22,7 +22,7 @@ public static class MSTableRowParse
 2-2147483546 Let It Die Live At The Palace -32727
 0-2147483546 Let It Die Live At The Palace -32727
          */
-        //CL.WriteLine(SHJoin.JoinSpace( CA.ToListString( o)));
+        //CL.WriteLine(string.Join(AllStrings.space,  new List<string>( o)));
         //CL.WriteLine(p);
 
         var value = o[p];
@@ -102,7 +102,7 @@ public static class MSTableRowParse
 
     public static string GetBoolS(object[] o, int p)
     {
-        return BTS.BoolToStringEn(GetBool(o, p));
+        return GetBool(o, p) ? "Yes" : "No";
     }
 
     public static DateTime GetDateTime(object[] o, int p)

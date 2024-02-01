@@ -1,4 +1,12 @@
+
 namespace SunamoSqlServer.MSSQL;
+using SunamoConverters.Converts;
+using SunamoDevCode;
+using SunamoDevCode.Enums;
+using SunamoHtml.Generators;
+using SunamoSqlServer._sunamo;
+using SunamoStringTrim;
+
 
 //using System.Activities;
 public partial class MSColumnsDB : List<MSSloupecDB>
@@ -59,7 +67,7 @@ public partial class MSColumnsDB : List<MSSloupecDB>
         StringBuilder sb = new StringBuilder();
         if (this.Count == 0)
         {
-            ThrowEx.Custom("Nebyly nalezeny žádné sloupce");
+            throw new Exception("Nebyly nalezeny žádné sloupce");
         }
         sb.Append("(");
         foreach (MSSloupecDB item in this)
@@ -135,11 +143,11 @@ public partial class MSColumnsDB : List<MSSloupecDB>
         // 1) create full = PathSczAdmin
         string nameCs = null;
         string cs = GetCsTableRow(signed, nazevTabulky, dbPrefix, out nameCs); // cs
-        string Path = FS.Combine(folderSaveToDirectoryName, "DontCopy2", nameCs + ".cs");
+        string Path2 = Path.Combine(folderSaveToDirectoryName, "DontCopy2", nameCs + ".cs");
         string PathSczAdmin = null;
         if (folderSunamoCzAdminSaveToDirectoryName != null)
         {
-            PathSczAdmin = FS.Combine(folderSunamoCzAdminSaveToDirectoryName, "DontCopy2", nameCs + ".cs");
+            PathSczAdmin = Path.Combine(folderSunamoCzAdminSaveToDirectoryName, "DontCopy2", nameCs + ".cs");
         }
 
 
@@ -149,16 +157,16 @@ public partial class MSColumnsDB : List<MSSloupecDB>
         string PathSczBaseAdmin = null;
         if (folderSunamoCzAdminSaveToDirectoryName != null)
         {
-            PathSczBaseAdmin = FS.Combine(folderSunamoCzAdminSaveToDirectoryName, "DontCopyBase", nameCs + "Base.cs");
+            PathSczBaseAdmin = Path.Combine(folderSunamoCzAdminSaveToDirectoryName, "DontCopyBase", nameCs + "Base.cs");
         }
 
         // 3) PathBase
 
-        string PathBase = FS.Combine(folderSaveToDirectoryName, "DontCopyBase", nameCs + "Base.cs");
+        string PathBase = Path.Combine(folderSaveToDirectoryName, "DontCopyBase", nameCs + "Base.cs");
 
 
 
-        FS.CreateUpfoldersPsysicallyUnlessThere(Path);
+        FS.CreateUpfoldersPsysicallyUnlessThere(Path2);
         //FS.CreateUpfoldersPsysicallyUnlessThere(Path4);
         FS.CreateUpfoldersPsysicallyUnlessThere(PathBase);
 
@@ -175,19 +183,19 @@ public partial class MSColumnsDB : List<MSSloupecDB>
         if (replaceMSinMSStoredProceduresI != null)
         {
             string cs2 = cs.Replace("MSStoredProceduresI", replaceMSinMSStoredProceduresI + "StoredProceduresI");
-            TF.WriteAllText(Path, cs2);
+            File.WriteAllTextAsync(Path2, cs2);
             if (PathSczAdmin != null)
             {
-                TF.WriteAllText(PathSczAdmin, cs2);
+                File.WriteAllTextAsync(PathSczAdmin, cs2);
             }
 
         }
         else
         {
-            TF.WriteAllText(Path, cs);
+            File.WriteAllTextAsync(Path2, cs);
             if (PathSczAdmin != null)
             {
-                TF.WriteAllText(PathSczAdmin, cs);
+                File.WriteAllTextAsync(PathSczAdmin, cs);
             }
         }
 
@@ -195,14 +203,14 @@ public partial class MSColumnsDB : List<MSSloupecDB>
 
         if (PathSczBaseAdmin != null)
         {
-            TF.WriteAllText(PathSczBaseAdmin, csBase);
+            File.WriteAllTextAsync(PathSczBaseAdmin, csBase);
         }
 
         // 3) PathBase
 
-        TF.WriteAllText(PathBase, csBase);
+        File.WriteAllTextAsync(PathBase, csBase);
 
-        return "Uloženo do souboru " + Path;
+        return "Uloženo do souboru " + Path2;
     }
 
     /// <summary>
@@ -241,7 +249,7 @@ public partial class MSColumnsDB : List<MSSloupecDB>
         {
             dbPrefix2 = "";
         }
-        //string nazevTabulkyCopy = SH.Copy(nazevTabulky);
+        //string nazevTabulkyCopy = (nazevTabulky);
 
         CSharpGenerator csg = new CSharpGenerator();
         if (nazevTabulky.StartsWith(dbPrefix))
@@ -253,7 +261,7 @@ public partial class MSColumnsDB : List<MSSloupecDB>
         if (nazevTabulky.Contains("_"))
         {
             isDynamicTable = true;
-            nazevTabulky = ConvertPascalConvention.ToConvention(nazevTabulky);
+            nazevTabulky = Case.NET.CaseConverter.PascalCase.ConvertCase(nazevTabulky); //ConvertPascalConvention.ToConvention(nazevTabulky);
         }
 
         tableName = "TableRow" + nazevTabulky + "Base";
@@ -359,8 +367,8 @@ public partial class MSColumnsDB : List<MSSloupecDB>
             dbPrefix2 = "";
         }
         // OBSAHUJE I PREFIX, TAKŽE TŘEBA Koc_
-        string nazevTabulkyCopy = SH.Copy(nazevTabulky);
-        string niMethod = CSharpGenerator.AddTab(2, "ThrowEx.Custom();");
+        string nazevTabulkyCopy = (nazevTabulky);
+        string niMethod = CSharpGenerator.AddTab(2, "throw new Exception();");
 
         // ZBAVÍM TABULKU nazevTabulky PREFIXU, ČILI NEOBSAHUJE NAPŘ. Koc_
         if (nazevTabulky.StartsWith(dbPrefix))
@@ -438,7 +446,7 @@ public partial class MSColumnsDB : List<MSSloupecDB>
                 else
                 {
                     // Je to například IDMisters
-                    ThrowEx.Custom("V prvním sloupci není řádek ID nebo ID*");
+                    throw new Exception("V prvním sloupci není řádek ID nebo ID*");
                 }
             }
             else
@@ -489,7 +497,7 @@ ParseRow(o);");
         }
         if (nameFields.Count == 0)
         {
-            ThrowEx.Custom("Tabulka nemůže mít jen 1 sloupec.");
+            throw new Exception("Tabulka nemůže mít jen 1 sloupec.");
         }
         else
         {
@@ -627,7 +635,7 @@ ParseRow(o);");
         }
 
         // 4) převod vybraných proměnných
-        csg2.Ctor(1, ModifiersConstructor.Public, tableName, "//" + dbPrefix + "AO." + tableNameWithoutTableRowAndBase + "(columns, o)" + Environment.NewLine, CAG.ToList<string>("string", "columns", "object[]", "o").ToArray());
+        csg2.Ctor(1, ModifiersConstructor.Public, tableName, "//" + dbPrefix + "AO." + tableNameWithoutTableRowAndBase + "(columns, o)" + Environment.NewLine, new List<string>(["string", "columns", "object[]", "o"]).ToArray());
 
         return csg2.ToString();
     }
@@ -749,7 +757,7 @@ ParseRow(o);");
             case SqlDbType.Structured:
             case SqlDbType.Udt:
             case SqlDbType.Xml:
-                ThrowEx.Custom("Snažíte se převést na int strukturovaný(složitý) datový typ");
+                throw new Exception("Snažíte se převést na int strukturovaný(složitý) datový typ");
                 return null;
             case SqlDbType.UniqueIdentifier:
                 if (canBeNull)
@@ -763,7 +771,7 @@ ParseRow(o);");
             case SqlDbType.Variant:
                 return "GetObject";
             default:
-                ThrowEx.Custom("Snažíte se převést datový typ, pro který není implementována větev");
+                throw new Exception("Snažíte se převést datový typ, pro který není implementována větev");
                 return null;
 
         }
@@ -773,14 +781,14 @@ ParseRow(o);");
     {
         CSharpGenerator csg = new CSharpGenerator();
         CSharpGenerator csgDisplayInfo = new CSharpGenerator();
-        string nvc = SH.Copy(nameOfVariable);
+        string nvc = (nameOfVariable);
         string nultyParametr = "";
         bool numero = false;
         foreach (MSSloupecDB item in this)
         {
             numero = false;
             nultyParametr = "";
-            nameOfVariable = SH.Copy(nvc);
+            nameOfVariable = (nvc);
             switch (item.Type2)
             {
                 case SqlDbType.NChar:
@@ -826,7 +834,7 @@ ParseRow(o);");
                     break;
                 case SqlDbType.DateTimeOffset:
                 case SqlDbType.Timestamp:
-                    ThrowEx.Custom("Datový typ DateTimeOffset a Timestamp není podporován.");
+                    throw new Exception("Datový typ DateTimeOffset a Timestamp není podporován.");
                     return null;
                 case SqlDbType.Real:
                 case SqlDbType.Float:
@@ -835,19 +843,19 @@ ParseRow(o);");
                 case SqlDbType.Image:
                 case SqlDbType.Binary:
                 case SqlDbType.VarBinary:
-                    ThrowEx.Custom("Not supported convert binary data to string");
+                    throw new Exception("Not supported convert binary data to string");
                     return null;
                 case SqlDbType.Structured:
-                    ThrowEx.Custom("Strukturované datové typy nejsou podporovány.");
+                    throw new Exception("Strukturované datové typy nejsou podporovány.");
                     return null;
                 case SqlDbType.Udt:
-                    ThrowEx.Custom("Univerzální datové typy nejsou podporovány.");
+                    throw new Exception("Univerzální datové typy nejsou podporovány.");
                     return null;
                 case SqlDbType.Variant:
-                    ThrowEx.Custom("Variantní datové typy nejsou podporovány.");
+                    throw new Exception("Variantní datové typy nejsou podporovány.");
                     return null;
                 case SqlDbType.Xml:
-                    ThrowEx.Custom("Xml datový typ není podporován");
+                    throw new Exception("Xml datový typ není podporován");
                     return null;
                 default:
                     break;

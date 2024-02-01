@@ -12,7 +12,7 @@ public class StopwatchStaticSql
     /// <returns></returns>
     public static bool AboveLimit()
     {
-        if( sw.ElapsedMilliseconds > maxMs)
+        if (sw.ElapsedMilliseconds > maxMs)
         {
             return true;
         }
@@ -25,20 +25,20 @@ public class StopwatchStaticSql
     /// <param name="v"></param>
     public static void StopAndPrintElapsed(string v)
     {
-        
-            ms = sw.ElapsedMilliseconds;
+
+        ms = sw.ElapsedMilliseconds;
         sw.Reset();
-        
-            if (ms > maxMs)
+
+        if (ms > maxMs)
+        {
+            if (/*VpsHelperSunamo.IsVps ||*/ MSStoredProceduresI.forceIsVps)
             {
-                if (VpsHelperSunamo.IsVps || MSStoredProceduresI.forceIsVps)
-                {
-                    // everything begin with select, update etc. so is no needed delimiter
-                    SqlMeasureTimeWorker.swSqlLog.WriteLine(ms + v);
-                    SqlMeasureTimeWorker.IncrementWrittenLines();
-                }
+                // everything begin with select, update etc. so is no needed delimiter
+                SqlMeasureTimeWorker.swSqlLog.WriteLine(ms + v);
+                SqlMeasureTimeWorker.IncrementWrittenLines();
             }
-        
+        }
+
     }
 
     public static bool forceIsVps = false;

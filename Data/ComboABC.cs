@@ -1,4 +1,7 @@
+
 namespace SunamoSqlServer.Data;
+using SunamoData.Data;
+
 
 public class ComboABC
 {

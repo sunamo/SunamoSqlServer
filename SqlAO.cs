@@ -1,4 +1,5 @@
 namespace SunamoSqlServer;
+using SunamoUnderscore;
 /// <summary>
 /// Sql Array Object
 /// </summary>
