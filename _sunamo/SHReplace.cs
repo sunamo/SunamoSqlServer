@@ -6,32 +6,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SunamoSqlServer._sunamo
+namespace SunamoSqlServer._sunamo;
+
+internal class SHReplace
 {
-    internal class SHReplace
+    internal static string ReplaceAll(string vstup, string zaCo, params string[] co)
     {
-        internal static string ReplaceAll(string vstup, string zaCo, params string[] co)
+        //Stupid, zaCo can be null
+
+        //if (string.IsNullOrEmpty(zaCo))
+        //{
+        //    return vstup;
+        //}
+
+        foreach (var item in co)
         {
-            //Stupid, zaCo can be null
-
-            //if (string.IsNullOrEmpty(zaCo))
-            //{
-            //    return vstup;
-            //}
-
-            foreach (var item in co)
+            if (string.IsNullOrEmpty(item))
             {
-                if (string.IsNullOrEmpty(item))
-                {
-                    return vstup;
-                }
+                return vstup;
             }
-
-            foreach (var item in co)
-            {
-                vstup = vstup.Replace(item, zaCo);
-            }
-            return vstup;
         }
+
+        foreach (var item in co)
+        {
+            vstup = vstup.Replace(item, zaCo);
+        }
+        return vstup;
     }
 }

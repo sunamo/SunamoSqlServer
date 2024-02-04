@@ -6,53 +6,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace SunamoSqlServer._sunamo
+namespace SunamoSqlServer._sunamo;
+
+internal class FS
 {
-    internal class FS
+    internal static void CreateUpfoldersPsysicallyUnlessThere(string nad)
     {
-        internal static void CreateUpfoldersPsysicallyUnlessThere(string nad)
+        CreateFoldersPsysicallyUnlessThere(Path.GetDirectoryName(nad));
+    }
+
+    internal static void CreateFoldersPsysicallyUnlessThere(string nad)
+    {
+        ThrowEx.IsNullOrEmpty("nad", nad);
+        ThrowEx.IsNotWindowsPathFormat("nad", nad);
+
+
+        if (Directory.Exists(nad))
         {
-            CreateFoldersPsysicallyUnlessThere(Path.GetDirectoryName(nad));
+            return;
         }
 
-        internal static void CreateFoldersPsysicallyUnlessThere(string nad)
-        {
-            ThrowEx.IsNullOrEmpty("nad", nad);
-            ThrowEx.IsNotWindowsPathFormat("nad", nad);
-
-
-            if (Directory.Exists(nad))
-            {
-                return;
-            }
-
-            List<string> slozkyKVytvoreni = new List<string>
+        List<string> slozkyKVytvoreni = new List<string>
 {
 nad
 };
 
-            while (true)
+        while (true)
+        {
+            nad = Path.GetDirectoryName(nad);
+
+            // TODO: Tady to nefunguje pro UWP/UAP apps protoze nemaji pristup k celemu disku. Zjistit co to je UWP/UAP/... a jak v nem ziskat/overit jakoukoliv slozku na disku
+            if (Directory.Exists(nad))
             {
-                nad = Path.GetDirectoryName(nad);
-
-                // TODO: Tady to nefunguje pro UWP/UAP apps protoze nemaji pristup k celemu disku. Zjistit co to je UWP/UAP/... a jak v nem ziskat/overit jakoukoliv slozku na disku
-                if (Directory.Exists(nad))
-                {
-                    break;
-                }
-
-                string kopia = nad;
-                slozkyKVytvoreni.Add(kopia);
+                break;
             }
 
-            slozkyKVytvoreni.Reverse();
-            foreach (string item in slozkyKVytvoreni)
+            string kopia = nad;
+            slozkyKVytvoreni.Add(kopia);
+        }
+
+        slozkyKVytvoreni.Reverse();
+        foreach (string item in slozkyKVytvoreni)
+        {
+            string folder = item;
+            if (!Directory.Exists(folder))
             {
-                string folder = item;
-                if (!Directory.Exists(folder))
-                {
-                    Directory.CreateDirectory(folder);
-                }
+                Directory.CreateDirectory(folder);
             }
         }
     }
