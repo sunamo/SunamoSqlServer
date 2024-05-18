@@ -19,13 +19,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CaseDotNet" Version="0.3.36" />
-    <PackageReference Include="SunamoCollections" Version="24.2.1.1" />
-    <PackageReference Include="SunamoData" Version="24.2.1.1" />
-    <PackageReference Include="SunamoDevCode" Version="24.1.24.1" />
-    <PackageReference Include="SunamoInterfaces" Version="24.2.1.2" />
-    <PackageReference Include="SunamoNumbers" Version="24.2.1.2" />
-    <PackageReference Include="SunamoShared" Version="24.2.1.2" />
-    <PackageReference Include="SunamoTextBuilder" Version="24.2.1.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6">
     </PackageReference>
     <PackageReference Include="TSQL.Parser" Version="2.6.0">
